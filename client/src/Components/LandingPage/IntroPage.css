@@ -2,42 +2,6 @@
   font-family: 'DM Serif Display', serif;
 }
 
-header {
-  background-color: black;
-  padding: 0 1rem;
-  color: white;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* first column */
-header .img-wrapper {
-  max-width: 35px;
-}
-
-header .img-wrapper img {
-  width: 100%;
-}
-
-/* second column */
-.header-dirc ul {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.header-dirc li {
-  list-style-type: none;
-  font-size: 0.8rem;
-  max-width: 60px;
-}
-
-.header-dirc li:last-child {
-  margin-top: 1rem;
-}
-
 /* cross sword and h1 */
 #intro-page-container .column-full {
   padding: 0 1rem;

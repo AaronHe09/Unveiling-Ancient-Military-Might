@@ -1,11 +1,9 @@
-import spartanIcon from '../../images/spartan-icon-white.png';
 import crossSword from '../../images/cross-sword-gif.gif';
 import './IntroPage.css';
 
 export default function IntroPage() {
   return (
     <div id="intro-page-container">
-      <Header />
       <div className="column-full">
         <div>
           <h1>
@@ -44,22 +42,5 @@ export default function IntroPage() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Header() {
-  return (
-    <header>
-      <div className="column-half img-wrapper">
-        <img src={spartanIcon} alt="Spartan Icon" />
-      </div>
-      <div className="column-half header-dirc">
-        <ul>
-          <li>Login</li>
-          <li>Factions</li>
-          <li>Build Your Army</li>
-        </ul>
-      </div>
-    </header>
   );
 }
