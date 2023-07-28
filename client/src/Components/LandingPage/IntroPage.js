@@ -3,7 +3,7 @@ import './IntroPage.css';
 
 export default function IntroPage() {
   return (
-    <div id="intro-page-container">
+    <section id="intro-page-container">
       <div className="column-full">
         <div>
           <h1>
@@ -41,6 +41,6 @@ export default function IntroPage() {
           <h2>A Total War: Rome II inspired Project</h2>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

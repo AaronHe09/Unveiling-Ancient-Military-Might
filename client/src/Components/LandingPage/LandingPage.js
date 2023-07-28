@@ -6,8 +6,10 @@ export default function LandingPage() {
   return (
     <>
       <Header />
-      <IntroPage />
-      <AncientEmpires />
+      <body>
+        <IntroPage />
+        <AncientEmpires />
+      </body>
     </>
   );
 }
