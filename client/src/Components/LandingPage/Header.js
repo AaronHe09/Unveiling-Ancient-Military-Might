@@ -7,13 +7,13 @@ export default function Header() {
       <div className="column-half img-wrapper">
         <img src={spartanIcon} alt="Spartan Icon" />
       </div>
-      <div className="column-half header-dirc">
+      <nav className="column-half">
         <ul>
           <li>Login</li>
           <li>Factions</li>
           <li>Build Your Army</li>
         </ul>
-      </div>
+      </nav>
     </header>
   );
 }

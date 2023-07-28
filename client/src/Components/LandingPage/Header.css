@@ -18,18 +18,18 @@ header .img-wrapper img {
 }
 
 /* second column */
-.header-dirc ul {
+nav ul {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.header-dirc li {
+nav li {
   list-style-type: none;
   font-size: 0.8rem;
   max-width: 60px;
 }
 
-.header-dirc li:last-child {
+nav li:last-child {
   margin-top: 1rem;
 }
