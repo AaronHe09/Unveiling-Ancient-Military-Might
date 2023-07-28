@@ -40,7 +40,6 @@ h1 {
 #intro-page-container p {
   font-size: 0.95rem;
   margin-bottom: 2.5rem;
-  line-height: 1rem;
   font-family: 'Source Serif 4', serif;
   font-weight: 600;
 }
@@ -52,7 +51,7 @@ h1 {
 #intro-page-container i {
   font-size: 0.7rem;
   font-weight: normal;
-  line-height: 0;
+  line-height: 0.1rem;
   color: #656565;
 }
 
