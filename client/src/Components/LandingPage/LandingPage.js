@@ -1,11 +1,11 @@
 import IntroPage from './IntroPage';
-import Header from './Header';
+import NavBar from './NavBar';
 import AncientEmpires from './AncientEmpires';
 
 export default function LandingPage() {
   return (
     <>
-      <Header />
+      <NavBar />
       <body>
         <IntroPage />
         <AncientEmpires />

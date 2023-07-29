@@ -1,7 +1,7 @@
 import spartanIcon from '../../images/spartan-icon-white.png';
-import './Header.css';
+import './NavBar.css';
 
-export default function Header() {
+export default function NavBar() {
   return (
     <header>
       <div className="column-half img-wrapper">
