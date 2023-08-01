@@ -8,12 +8,11 @@ create schema "public";
 
 CREATE TABLE "public"."units" (
 	"unitId" serial NOT NULL,
-	"factionId" integer NOT NULL,
 	"unitType" TEXT NOT NULL,
 	"unitName" TEXT NOT NULL,
 	"weapon" TEXT NOT NULL,
 	"armor" TEXT NOT NULL,
-	"image" TEXT NOT NULL,
+  "desc" TEXT not NULL,
 	CONSTRAINT "units_pk" PRIMARY KEY ("unitId")
 ) WITH (
   OIDS=FALSE
@@ -81,7 +80,17 @@ CREATE TABLE "public"."userUnits" (
 
 
 
-ALTER TABLE "units" ADD CONSTRAINT "units_fk0" FOREIGN KEY ("factionId") REFERENCES "factions"("factionId");
+CREATE TABLE "public"."factionUnits" (
+	"factionId" serial NOT NULL,
+	"unitId" serial NOT NULL,
+	"imageUrl" TEXT NOT NULL,
+	CONSTRAINT "factionUnits_pk" PRIMARY KEY ("factionId","unitId")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 
 
 ALTER TABLE "generals" ADD CONSTRAINT "generals_fk0" FOREIGN KEY ("factionId") REFERENCES "factions"("factionId");
@@ -92,3 +101,6 @@ ALTER TABLE "userArmy" ADD CONSTRAINT "userArmy_fk1" FOREIGN KEY ("userId") REFE
 
 ALTER TABLE "userUnits" ADD CONSTRAINT "userUnits_fk0" FOREIGN KEY ("userArmyId") REFERENCES "userArmy"("userArmyId");
 ALTER TABLE "userUnits" ADD CONSTRAINT "userUnits_fk1" FOREIGN KEY ("unitId") REFERENCES "units"("unitId");
+
+ALTER TABLE "factionUnits" ADD CONSTRAINT "factionUnits_fk0" FOREIGN KEY ("factionId") REFERENCES "factions"("factionId");
+ALTER TABLE "factionUnits" ADD CONSTRAINT "factionUnits_fk1" FOREIGN KEY ("unitId") REFERENCES "units"("unitId");
