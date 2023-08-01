@@ -10,11 +10,9 @@ CREATE TABLE "public"."units" (
 	"unitId" serial NOT NULL,
 	"factionId" integer NOT NULL,
 	"unitType" TEXT NOT NULL,
-	"unitClass" TEXT NOT NULL,
 	"unitName" TEXT NOT NULL,
 	"weapon" TEXT NOT NULL,
 	"armor" TEXT NOT NULL,
-	"desc" TEXT NOT NULL,
 	"image" TEXT NOT NULL,
 	CONSTRAINT "units_pk" PRIMARY KEY ("unitId")
 ) WITH (
