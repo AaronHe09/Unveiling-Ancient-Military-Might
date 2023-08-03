@@ -1,0 +1,15 @@
+.quote-container {
+  padding: 1rem;
+  margin: 2rem 0;
+  border-top: 2px solid #f5d17b;
+  border-bottom: 2px solid #f5d17b;
+  background-color: black;
+}
+
+.quote {
+  font-family: Langar, cursive;
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  line-height: 1.8rem;
+}
