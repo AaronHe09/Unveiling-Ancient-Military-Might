@@ -5,7 +5,7 @@ import FavoriteButton from './FavoriteButton';
 
 export default function EliteSoldiers() {
   return (
-    <section className="elite-soldiers-container">
+    <section id="elite-soldiers-container">
       <h1>Elite Soldiers</h1>
       <RenderEliteSoldier
         factionId={15}
