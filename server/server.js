@@ -49,8 +49,17 @@ app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
   }
 });
 
-app.get('/api/hi', (req, res) => {
-  console.log('hi');
+app.get('/api/factions', async (req, res, next) => {
+  try {
+    const sql = `
+    select *
+    from "factions"
+    `;
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.get('*', (req, res) => res.sendFile(`${reactStaticDir}/index.html`));
