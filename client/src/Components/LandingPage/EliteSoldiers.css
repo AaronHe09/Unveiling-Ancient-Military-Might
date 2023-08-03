@@ -68,9 +68,10 @@
 /* row three */
 .unit-name {
   font-size: 0.7rem;
+  margin-bottom: 1rem;
 }
 
-/* column 2 three */
+/* column two */
 .desc-card {
   flex-basis: 61%;
   font-size: 0.6rem;

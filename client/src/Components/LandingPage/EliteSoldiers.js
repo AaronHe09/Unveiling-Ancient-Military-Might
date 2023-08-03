@@ -1,6 +1,7 @@
 import './EliteSoldiers.css';
 import { useEffect, useState } from 'react';
 import { readUnit } from '../../data';
+import FavoriteButton from './FavoriteButton';
 
 export default function EliteSoldiers() {
   return (
@@ -57,6 +58,7 @@ function RenderEliteSoldier({
         <p className="unit-name">
           <i>{`${unitData.factionName} ${unitData.unitName}`}</i>
         </p>
+        <FavoriteButton />
       </div>
       <div
         className="column-half desc-card"
