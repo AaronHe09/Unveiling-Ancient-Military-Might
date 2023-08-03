@@ -1,5 +1,7 @@
 .favorite-button-container {
   width: 100%;
-  display: flex;
-  justify-content: end;
+}
+
+.favorite-button-container svg {
+  float: right;
 }
