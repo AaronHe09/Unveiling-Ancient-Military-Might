@@ -8,20 +8,20 @@ export default function EliteSoldiers() {
     <section className="elite-soldiers-container">
       <h1>Elite Soldiers</h1>
       <RenderEliteSoldier
-        factionId={1}
-        unitId={15}
-        backgroundColor="#68483C"
-        borderColor="#A69182"
-      />
-      <RenderEliteSoldier
         factionId={15}
         unitId={62}
         backgroundColor="#600502"
         borderColor="#CBDAD7"
       />
       <RenderEliteSoldier
+        factionId={1}
+        unitId={15}
+        backgroundColor="#68483C"
+        borderColor="#A69182"
+      />
+      <RenderEliteSoldier
         factionId={17}
-        unitId={80}
+        unitId={68}
         backgroundColor="#A62416"
         borderColor="#DB9124"
       />
@@ -68,7 +68,7 @@ function RenderEliteSoldier({
           <img src={unitData.imageUrl} alt={unitData.unitName} />
         </div>
         <p className="unit-name">
-          <i>{`${unitData.factionName} ${unitData.unitName}`}</i>
+          <i>{`Faction of ${unitData.factionName}`}</i>
         </p>
         <FavoriteButton />
       </div>

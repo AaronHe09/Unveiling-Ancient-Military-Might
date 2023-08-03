@@ -35,13 +35,14 @@
 .unit-header {
   position: relative;
   word-spacing: 999px;
+  z-index: 99;
 }
 
 .faction-icon-wrapper {
   width: 25px;
   position: absolute;
   top: 50%;
-  left: 0;
+  left: -5px;
   transform: translateY(-50%);
 }
 
@@ -67,7 +68,7 @@
 
 /* row three */
 .unit-name {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   margin-bottom: 1rem;
 }
 
