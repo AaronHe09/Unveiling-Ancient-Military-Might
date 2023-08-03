@@ -13,7 +13,6 @@ export default function FavoriteButton() {
     } else {
       setFavorited(regular);
     }
-    console.log(favorited);
   }
 
   return (
