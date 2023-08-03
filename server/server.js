@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import errorMiddleware from './lib/error-middleware.js';
 import pg from 'pg';
+import ClientError from './lib/client-error.js';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -22,17 +23,36 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
-/**
- * Serves React's index.html if no api route matches.
- *
- * Implementation note:
- * When the final project is deployed, this Express server becomes responsible
- * for serving the React files. (In development, the Create React App server does this.)
- * When navigating in the client, if the user refreshes the page, the browser will send
- * the URL to this Express server instead of to React Router.
- * Catching everything that doesn't match a route and serving index.html allows
- * React Router to manage the routing.
- */
+app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
+  try {
+    const { factionId, unitId } = req.params;
+    if (!factionId || !unitId) {
+      throw new ClientError(401, 'Invalid factionId or UnitId');
+    }
+    const sql = `
+      SELECT *
+      FROM "factionUnits"
+      JOIN "factions" USING ("factionId")
+      JOIN "units" USING ("unitId")
+      WHERE "factionId" = $1
+      AND "unitId" = $2;
+    `;
+    const params = [factionId, unitId];
+    const result = await db.query(sql, params);
+    const [unit] = result.rows;
+    if (!unit) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    console.log(res.json(unit));
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/hi', (req, res) => {
+  console.log('hi');
+});
+
 app.get('*', (req, res) => res.sendFile(`${reactStaticDir}/index.html`));
 
 app.use(errorMiddleware);

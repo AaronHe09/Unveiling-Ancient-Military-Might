@@ -725,7 +725,7 @@ values
       (31, 11, 'https://www.honga.net/totalwar/rome2/gen_images/unit_icon/rome2/rom_volcae/Cel_Tribesmen.png'),
       (31, 13, 'https://www.honga.net/totalwar/rome2/gen_images/unit_icon/rome2/rom_volcae/Cel_Heavy_Horse.png'),
       (31, 14, 'https://www.honga.net/totalwar/rome2/gen_images/unit_icon/rome2/rom_volcae/Cel_Light_Horse.png'),
-      (31, 15, 'https://www.honga.net/totalwar/rome2/gen_images/unit_icon/rome2/rom_volcae/Cel_Noble_Horse.png'),
+      (31, 15, 'https://www.honga.net/totalwar/rome2/gen_images/unit_icon/rome2/rom_volcae/Cel_Noble_Horse.png');
 
 
 

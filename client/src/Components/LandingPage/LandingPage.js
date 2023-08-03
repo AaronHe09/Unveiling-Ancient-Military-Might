@@ -1,15 +1,19 @@
 import IntroPage from './IntroPage';
 import NavBar from './NavBar';
 import AncientEmpires from './AncientEmpires';
+import EliteSoldiers from './EliteSoldiers';
+import Quote from './Quote';
 
 export default function LandingPage() {
   return (
     <>
       <NavBar />
-      <body>
+      <main>
         <IntroPage />
         <AncientEmpires />
-      </body>
+        <Quote />
+        <EliteSoldiers />
+      </main>
     </>
   );
 }
