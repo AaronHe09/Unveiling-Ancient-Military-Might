@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { readAllFactions } from '../../data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import './Factions.css';
 
 export default function Factions() {
   const [groupedFactions, setGroupedFactions] = useState(undefined);
@@ -31,7 +33,7 @@ export default function Factions() {
       <div>
         {keys.map((key) => {
           return (
-            <section key={key}>
+            <section key={key} className="faction-group">
               <h1>{key}</h1>
               <RenderFactions
                 currentKey={key}
@@ -53,7 +55,16 @@ function RenderFactions({ currentKey, groupedFactions }) {
     return (
       <>
         {factions.map((faction) => {
-          return <li key={faction.factionId}>{faction.factionName}</li>;
+          const { factionIcon, factionName, factionId } = faction;
+          return (
+            <Link className="faction-card" to={`/factions/${factionId}`}>
+              {console.log(faction)}
+              <div className="icon-wrapper">
+                <img src={factionIcon} alt={factionName} />
+              </div>
+              <h3 key={factionId}>{factionName}</h3>
+            </Link>
+          );
         })}
       </>
     );
@@ -61,11 +72,13 @@ function RenderFactions({ currentKey, groupedFactions }) {
 
   return (
     <div>
-      <FontAwesomeIcon
-        icon={isShowing ? faEye : faEyeSlash}
-        onClick={() => setIsShowing(!isShowing)}
-      />
-      <ul>{isShowing && renderFactions()}</ul>
+      <div className="fontawesome-icon-wrapper">
+        <FontAwesomeIcon
+          icon={isShowing ? faEye : faEyeSlash}
+          onClick={() => setIsShowing(!isShowing)}
+        />
+      </div>
+      <div className="row">{isShowing && renderFactions()}</div>
     </div>
   );
 }

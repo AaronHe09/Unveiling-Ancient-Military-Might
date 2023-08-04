@@ -2,6 +2,47 @@
   padding: 1rem;
 }
 
-#factions-container li {
-  list-style: none;
+#factions-container .row {
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.faction-group {
+  margin: 2rem 0;
+  padding: 1rem 0;
+  background-color: var(--blue);
+  border: 3px solid var(--gold);
+  border-radius: 10px;
+  color: white;
+}
+
+.faction-group h1 {
+  margin-bottom: 0.5rem;
+  padding: 0.7rem;
+  background-color: var(--gold);
+  font-size: 1.5rem;
+}
+
+.fontawesome-icon-wrapper {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.faction-card {
+  flex-basis: 33%;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.faction-card h3 {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.icon-wrapper img {
+  width: 100%;
+  padding: 0.7rem;
 }
