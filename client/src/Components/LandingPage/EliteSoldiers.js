@@ -49,6 +49,7 @@ function RenderEliteSoldier({
   }, [factionId, unitId]);
   return (
     <div className="row">
+      {/* Renders the card with the units name, unit imageUrl, and name of faction */}
       <div
         className="column-half unit-card"
         style={{
@@ -70,8 +71,10 @@ function RenderEliteSoldier({
         <p className="unit-name">
           <i>{`Faction of ${unitData.factionName}`}</i>
         </p>
+        {/* renders in the star icon to fav units */}
         <FavoriteButton />
       </div>
+      {/* Renders the description for unit */}
       <div
         className="column-half desc-card"
         style={{
