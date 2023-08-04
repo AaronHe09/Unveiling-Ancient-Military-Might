@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { readAllFactions } from '../../data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Factions() {
-  const [groupedFactions, setGroupedFactions] = useState([]);
+  const [groupedFactions, setGroupedFactions] = useState(undefined);
+  const [keys, setKeys] = useState([]);
 
   useEffect(() => {
     async function fetchAllFactions() {
@@ -14,6 +17,7 @@ export default function Factions() {
           return obj;
         }, {});
         setGroupedFactions(groupBy);
+        setKeys(Object.keys(groupBy));
       } catch (err) {
         console.error(err);
       }
@@ -22,31 +26,46 @@ export default function Factions() {
   }, []);
 
   return (
-    <main>
+    <main id="factions-container">
       <h1>Factions</h1>
-      <RenderFactions groupedFactions={groupedFactions} />
+      <div>
+        {keys.map((key) => {
+          return (
+            <section key={key}>
+              <h1>{key}</h1>
+              <RenderFactions
+                currentKey={key}
+                groupedFactions={groupedFactions}
+              />
+            </section>
+          );
+        })}
+      </div>
     </main>
   );
 }
 
-function RenderFactions({ groupedFactions }) {
-  const keys = Object.keys(groupedFactions);
+function RenderFactions({ currentKey, groupedFactions }) {
+  const [isShowing, setIsShowing] = useState(true);
+
+  function renderFactions() {
+    const factions = groupedFactions[currentKey];
+    return (
+      <>
+        {factions.map((faction) => {
+          return <li key={faction.factionId}>{faction.factionName}</li>;
+        })}
+      </>
+    );
+  }
 
   return (
     <div>
-      {keys.map((key) => {
-        const array = groupedFactions[key];
-        return (
-          <section id="faction-group-container" key={key}>
-            <h1>{key}</h1>
-            <ul className="row">
-              {array.map((faction) => (
-                <li key={faction.factionId}>{faction.factionName}</li>
-              ))}
-            </ul>
-          </section>
-        );
-      })}
+      <FontAwesomeIcon
+        icon={isShowing ? faEye : faEyeSlash}
+        onClick={() => setIsShowing(!isShowing)}
+      />
+      <ul>{isShowing && renderFactions()}</ul>
     </div>
   );
 }

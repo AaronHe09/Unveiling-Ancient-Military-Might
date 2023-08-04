@@ -1,0 +1,7 @@
+#factions-container {
+  padding: 1rem;
+}
+
+#factions-container li {
+  list-style: none;
+}
