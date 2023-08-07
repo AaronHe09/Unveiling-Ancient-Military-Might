@@ -1,4 +1,5 @@
 import './RenderFactionUnits.css';
+import FavoriteButton from './FavoriteButton';
 
 export default function RenderFactionUnits({ factionUnits }) {
   const keys = Object.keys(factionUnits);
@@ -27,6 +28,7 @@ function RenderUnits({ currentKey, factionUnits }) {
         const { imageUrl, unitName, unitId } = unit;
         return (
           <div className="unit-img-wrapper" key={unitId}>
+            <FavoriteButton size="xs" color="black" />
             <img src={imageUrl} alt={unitName} />
           </div>
         );

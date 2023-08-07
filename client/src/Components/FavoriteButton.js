@@ -4,7 +4,7 @@ import { faStar as solid } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import './FavoriteButton.css';
 
-export default function FavoriteButton() {
+export default function FavoriteButton({ size, color }) {
   const [favorited, setFavorited] = useState(regular);
 
   function handleOnFavorited() {
@@ -16,8 +16,13 @@ export default function FavoriteButton() {
   }
 
   return (
-    <div className="favorite-button-container">
-      <FontAwesomeIcon icon={favorited} size="sm" onClick={handleOnFavorited} />
+    <div id="favorite-button-container">
+      <FontAwesomeIcon
+        icon={favorited}
+        size={size}
+        onClick={handleOnFavorited}
+        color={color}
+      />
     </div>
   );
 }
