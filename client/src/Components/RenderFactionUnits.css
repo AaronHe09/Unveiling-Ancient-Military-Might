@@ -1,0 +1,23 @@
+.faction-units {
+  padding: 1rem 0;
+}
+
+.faction-units h3 {
+  background-color: var(--gold);
+  padding: 0.5rem 1.5rem;
+}
+
+.faction-units .row {
+  padding: 0 1rem;
+  margin: 0.4rem 0;
+  flex-wrap: wrap;
+}
+
+.faction-units .unit-img-wrapper {
+  border: 1px solid black;
+  width: 40px;
+}
+
+.faction-units .unit-img-wrapper img {
+  width: 100%;
+}

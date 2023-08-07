@@ -1,3 +1,5 @@
+import './RenderFactionUnits.css';
+
 export default function RenderFactionUnits({ factionUnits }) {
   const keys = Object.keys(factionUnits);
   return (
