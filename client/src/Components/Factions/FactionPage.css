@@ -35,6 +35,28 @@
   line-height: 1;
 }
 
+.faction-generals .general-img-wrapper {
+  width: 120px;
+  margin: 0 auto;
+}
+
+.faction-generals .general-img-wrapper img {
+  width: 100%;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.faction-generals h3 {
+  text-align: center;
+}
+
+.faction-generals .general {
+  position: relative;
+  flex-basis: 50%;
+}
+
+/* applied to multiple */
 .faction-desc,
 .faction-tactics,
 .faction-generals .general {
@@ -55,22 +77,6 @@
   font-weight: 400;
 }
 
-.faction-generals .general-img-wrapper {
-  width: 120px;
-  margin: 0 auto;
-}
-
-.faction-generals .general-img-wrapper img {
-  width: 100%;
-  border-radius: 50%;
-  border: 1px solid black;
-  margin-bottom: 1rem;
-}
-
-.faction-generals h3 {
-  text-align: center;
-}
-
-.faction-generals .general {
-  position: relative;
+.faction-generals .general:first-child {
+  border-right: 2px solid var(--gold);
 }
