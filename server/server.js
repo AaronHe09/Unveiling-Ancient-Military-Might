@@ -23,6 +23,28 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
+app.get('/api/generals/:factionId', async (req, res, next) => {
+  try {
+    const { factionId } = req.params;
+    if (!factionId) {
+      throw new ClientError(401, 'Invalid factionId or UnitId');
+    }
+    const sql = `
+      SELECT *
+      FROM "generals"
+      WHERE "factionId" = $1
+    `;
+    const params = [factionId];
+    const result = await db.query(sql, params);
+    if (!result.rows) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
   try {
     const { factionId, unitId } = req.params;

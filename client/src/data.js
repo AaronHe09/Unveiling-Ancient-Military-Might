@@ -21,3 +21,9 @@ export async function readFactionUnits(factionId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function readGenerals(factionId) {
+  const res = await fetch(`/api/generals/${factionId}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
