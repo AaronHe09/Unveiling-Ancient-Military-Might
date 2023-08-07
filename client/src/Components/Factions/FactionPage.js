@@ -47,7 +47,9 @@ export default function FactionPage() {
           <h3>About</h3>
           <p>{factionDetail.history}</p>
         </div>
-        <div className="faction-generals"></div>
+        <div className="row faction-generals">
+          <RenderGenerals factionGenerals={factionGenerals} />
+        </div>
         <div className="faction-tactics">
           <h3>Tactics</h3>
           <p>{factionDetail.tactics}</p>
@@ -55,5 +57,24 @@ export default function FactionPage() {
         <RenderUnits factionUnits={factionUnits} />
       </div>
     </main>
+  );
+}
+
+function RenderGenerals({ factionGenerals }) {
+  return (
+    <>
+      {factionGenerals.map((general) => {
+        const { desc, generalIcon, name, generalId } = general;
+        return (
+          <div key={generalId} className="general">
+            <div className="general-img-wrapper">
+              <img src={generalIcon} alt={name} />
+            </div>
+            <h3>{name}</h3>
+            <p>{desc}</p>
+          </div>
+        );
+      })}
+    </>
   );
 }
