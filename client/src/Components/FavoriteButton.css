@@ -1,7 +1,16 @@
-.faction-units svg {
+.faction-units svg,
+.faction-generals svg {
   position: absolute;
+}
+
+.faction-units svg {
   top: 1px;
   right: 1px;
+}
+
+.faction-generals svg {
+  top: 10px;
+  right: 10px;
 }
 
 #elite-soldiers-container #favorite-button-container {

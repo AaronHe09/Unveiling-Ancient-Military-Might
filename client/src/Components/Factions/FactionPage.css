@@ -70,3 +70,7 @@
 .faction-generals h3 {
   text-align: center;
 }
+
+.faction-generals .general {
+  position: relative;
+}

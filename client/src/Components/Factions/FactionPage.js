@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
 import RenderUnits from '../RenderUnits';
+import FavoriteButton from '../FavoriteButton';
 
 export default function FactionPage() {
   const { factionId } = useParams();
@@ -67,6 +68,7 @@ function RenderGenerals({ factionGenerals }) {
         const { desc, generalIcon, name, generalId } = general;
         return (
           <div key={generalId} className="general">
+            <FavoriteButton color="black" size="sm" />
             <div className="general-img-wrapper">
               <img src={generalIcon} alt={name} />
             </div>
