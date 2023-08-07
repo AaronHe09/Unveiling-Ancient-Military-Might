@@ -1,3 +1,9 @@
+.faction-units svg {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
 #elite-soldiers-container #favorite-button-container {
   width: 100%;
 }
