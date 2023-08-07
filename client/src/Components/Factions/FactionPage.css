@@ -1,0 +1,53 @@
+#faction-page-container {
+  padding: 1rem;
+  color: white;
+  font-family: 'Source Serif 4', serif;
+}
+
+#faction-page-container > div {
+  background-color: var(--blue);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+}
+
+.faction-header {
+  position: relative;
+  border-bottom: 2px solid var(--gold);
+}
+
+.faction-header .icon-wrapper {
+  width: 90px;
+  position: absolute;
+  top: 40%;
+  left: -5px;
+  transform: translateY(-50%);
+}
+
+.faction-header .icon-wrapper img {
+  width: 100%;
+}
+
+.faction-header h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  line-height: 1;
+}
+
+.faction-desc,
+.faction-tactics {
+  padding: 1rem;
+  border-bottom: 2px solid var(--gold);
+}
+
+.faction-desc h3,
+.faction-tactics h3 {
+  margin-bottom: 0.3rem;
+}
+
+.faction-desc p,
+.faction-tactics p {
+  font-size: 0.65rem;
+  font-weight: 400;
+}

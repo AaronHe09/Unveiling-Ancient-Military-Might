@@ -1,3 +1,57 @@
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { readFaction, readFactionUnits } from '../../data';
+import './FactionPage.css';
+import RenderFactionUnits from '../RenderFactionUnits';
+
 export default function FactionPage() {
-  return <div>factionPage</div>;
+  const { factionId } = useParams();
+  const [factionDetail, setFactionDetail] = useState([]);
+  const [factionUnits, setFactionUnits] = useState([]);
+
+  useEffect(() => {
+    async function fetchFactionDetails() {
+      try {
+        const factionData = await readFaction(factionId);
+        setFactionDetail(factionData[0]);
+        const factionUnitsData = await readFactionUnits(factionId);
+        const groupBy = factionUnitsData.reduce((obj, cur) => {
+          obj[cur.unitType] = obj[cur.unitType] || [];
+          obj[cur.unitType].push(cur);
+          return obj;
+        }, {});
+        setFactionUnits(groupBy);
+        console.log(groupBy);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchFactionDetails();
+  }, [factionId]);
+
+  return (
+    <main id="faction-page-container">
+      <div>
+        <div className="faction-header">
+          <div className="icon-wrapper">
+            <img
+              src={factionDetail.factionIcon}
+              alt={factionDetail.factionName}
+            />
+          </div>
+          <h1>{factionDetail.factionName}</h1>
+        </div>
+        <div className="faction-desc">
+          <h3>About</h3>
+          <p>{factionDetail.history}</p>
+        </div>
+        <div className="faction-generals"></div>
+        <div className="faction-tactics">
+          <h3>Tactics</h3>
+          <p>{factionDetail.tactics}</p>
+        </div>
+        <RenderFactionUnits factionUnits={factionUnits} />
+      </div>
+    </main>
+  );
 }

@@ -43,7 +43,52 @@ app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
     if (!unit) {
       throw new ClientError(401, 'Invalid Id');
     }
-    console.log(res.json(unit));
+    res.json(unit);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/faction-units/:factionId', async (req, res, next) => {
+  const { factionId } = req.params;
+  if (!factionId) {
+    throw new ClientError(401, 'Invalid facitonId or UnitId');
+  }
+  try {
+    const sql = `
+    SELECT *
+    FROM "factionUnits"
+    JOIN "units" USING ("unitId")
+    WHERE "factionId" = $1
+    `;
+    const params = [factionId];
+    const result = await db.query(sql, params);
+    if (!result.rows) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/faction/:factionId', async (req, res, next) => {
+  const { factionId } = req.params;
+  if (!factionId) {
+    throw new ClientError(401, 'Invalid facitonId or UnitId');
+  }
+  try {
+    const sql = `
+    SELECT *
+    FROM "factions"
+    WHERE "factionId" = $1
+    `;
+    const params = [factionId];
+    const result = await db.query(sql, params);
+    if (!result.rows) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    res.json(result.rows);
   } catch (err) {
     next(err);
   }

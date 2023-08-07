@@ -57,12 +57,14 @@ function RenderFactions({ currentKey, groupedFactions }) {
         {factions.map((faction) => {
           const { factionIcon, factionName, factionId } = faction;
           return (
-            <Link className="faction-card" to={`/factions/${factionId}`}>
-              {console.log(faction)}
+            <Link
+              className="faction-card"
+              to={`/factions/${factionId}`}
+              key={factionId}>
               <div className="icon-wrapper">
                 <img src={factionIcon} alt={factionName} />
               </div>
-              <h3 key={factionId}>{factionName}</h3>
+              <h3>{factionName}</h3>
             </Link>
           );
         })}

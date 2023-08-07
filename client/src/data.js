@@ -9,3 +9,15 @@ export async function readAllFactions() {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function readFaction(factionId) {
+  const res = await fetch(`/api/faction/${factionId}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+export async function readFactionUnits(factionId) {
+  const res = await fetch(`/api/faction-units/${factionId}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
