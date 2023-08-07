@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { readFaction, readFactionUnits } from '../../data';
+import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
 import RenderFactionUnits from '../RenderFactionUnits';
 
@@ -8,19 +8,22 @@ export default function FactionPage() {
   const { factionId } = useParams();
   const [factionDetail, setFactionDetail] = useState([]);
   const [factionUnits, setFactionUnits] = useState([]);
+  const [factionGenerals, setFactionGenerals] = useState([]);
 
   useEffect(() => {
     async function fetchFactionDetails() {
       try {
+        const factionGeneralsData = await readGenerals(factionId);
         const factionData = await readFaction(factionId);
-        setFactionDetail(factionData[0]);
         const factionUnitsData = await readFactionUnits(factionId);
         const groupBy = factionUnitsData.reduce((obj, cur) => {
           obj[cur.unitType] = obj[cur.unitType] || [];
           obj[cur.unitType].push(cur);
           return obj;
         }, {});
+        setFactionDetail(factionData[0]);
         setFactionUnits(groupBy);
+        setFactionGenerals(factionGeneralsData);
       } catch (err) {
         console.log(err);
       }
