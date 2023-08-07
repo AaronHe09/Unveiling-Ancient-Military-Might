@@ -1,7 +1,7 @@
-import './RenderFactionUnits.css';
+import './RenderUnits.css';
 import FavoriteButton from './FavoriteButton';
 
-export default function RenderFactionUnits({ factionUnits }) {
+export default function RenderUnits({ factionUnits }) {
   const keys = Object.keys(factionUnits);
   return (
     <div className="faction-units">
@@ -10,7 +10,7 @@ export default function RenderFactionUnits({ factionUnits }) {
           <section key={key}>
             <h3>{key}</h3>
             <div className="row">
-              <RenderUnits currentKey={key} factionUnits={factionUnits} />
+              <Units currentKey={key} factionUnits={factionUnits} />
             </div>
           </section>
         );
@@ -19,7 +19,7 @@ export default function RenderFactionUnits({ factionUnits }) {
   );
 }
 
-function RenderUnits({ currentKey, factionUnits }) {
+function Units({ currentKey, factionUnits }) {
   const currentArray = factionUnits[currentKey];
 
   return (

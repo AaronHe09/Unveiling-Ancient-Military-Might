@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
-import RenderFactionUnits from '../RenderFactionUnits';
+import RenderUnits from '../RenderUnits';
 
 export default function FactionPage() {
   const { factionId } = useParams();
@@ -52,7 +52,7 @@ export default function FactionPage() {
           <h3>Tactics</h3>
           <p>{factionDetail.tactics}</p>
         </div>
-        <RenderFactionUnits factionUnits={factionUnits} />
+        <RenderUnits factionUnits={factionUnits} />
       </div>
     </main>
   );
