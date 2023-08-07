@@ -21,7 +21,6 @@ export default function FactionPage() {
           return obj;
         }, {});
         setFactionUnits(groupBy);
-        console.log(groupBy);
       } catch (err) {
         console.log(err);
       }
