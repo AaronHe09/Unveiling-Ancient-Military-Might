@@ -1,4 +1,4 @@
-main {
+#login-container {
   padding: 1rem;
 }
 
@@ -40,7 +40,7 @@ main {
   outline: none;
 }
 
-::placeholder {
+#login ::placeholder {
   color: white;
 }
 
