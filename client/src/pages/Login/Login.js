@@ -16,7 +16,7 @@ export default function Login() {
             </div>
             <button>Login</button>
             <p>
-              Don't have an account? <Link>Sign Up</Link>
+              Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
           </fieldset>
         </form>

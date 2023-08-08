@@ -4,6 +4,7 @@ import Login from './pages/Login/Login';
 import Factions from './pages/Factions/Factions';
 import FactionPage from './pages/Factions/FactionPage';
 import BuildYourArmy from './pages/BuildYourArmy/BuildYourArmy';
+import SignUp from './pages/Signup/Signup';
 import './App.css';
 import './layout.css';
 import { Routes, Route } from 'react-router-dom';
@@ -17,6 +18,7 @@ function App() {
         <Route path="/factions" element={<Factions />} />
         <Route path="/factions/:factionId" element={<FactionPage />} />
         <Route path="/build-your-army" element={<BuildYourArmy />} />
+        <Route path="/signup" element={<SignUp />} />
       </Route>
     </Routes>
   );
