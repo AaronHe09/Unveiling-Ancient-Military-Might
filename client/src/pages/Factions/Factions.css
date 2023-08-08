@@ -40,6 +40,8 @@
 .faction-card h3 {
   text-align: center;
   font-size: 1.1rem;
+  text-decoration: none;
+  color: white;
 }
 
 .icon-wrapper img {
