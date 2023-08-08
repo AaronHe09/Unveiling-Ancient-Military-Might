@@ -151,6 +151,29 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
   }
 });
 
+app.delete('/api/delete-user/:userId', async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    if (!userId) {
+      throw new ClientError(400, `userId is required`);
+    }
+    const sql = `
+      delete from "users"
+      where "userId" = $1
+      returning *
+    `;
+    const params = [userId];
+    const result = await db.query(sql, params);
+    const [deleted] = result.rows;
+    if (!deleted) {
+      throw new ClientError(404, `Entry with id ${userId} is not found`);
+    }
+    res.status(204).json(deleted);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get('*', (req, res) => res.sendFile(`${reactStaticDir}/index.html`));
 
 app.use(errorMiddleware);
