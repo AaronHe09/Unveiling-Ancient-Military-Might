@@ -8,6 +8,11 @@
   margin: 0;
 }
 
+:root {
+  --blue: #7792a8;
+  --gold: #f5d17b;
+}
+
 body {
   background-color: #fceee2;
 }

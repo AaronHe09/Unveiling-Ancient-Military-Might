@@ -23,6 +23,28 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
+app.get('/api/generals/:factionId', async (req, res, next) => {
+  try {
+    const { factionId } = req.params;
+    if (!factionId) {
+      throw new ClientError(401, 'Invalid factionId or UnitId');
+    }
+    const sql = `
+      SELECT *
+      FROM "generals"
+      WHERE "factionId" = $1
+    `;
+    const params = [factionId];
+    const result = await db.query(sql, params);
+    if (!result.rows) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
   try {
     const { factionId, unitId } = req.params;
@@ -43,14 +65,68 @@ app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
     if (!unit) {
       throw new ClientError(401, 'Invalid Id');
     }
-    console.log(res.json(unit));
+    res.json(unit);
   } catch (err) {
     next(err);
   }
 });
 
-app.get('/api/hi', (req, res) => {
-  console.log('hi');
+app.get('/api/faction-units/:factionId', async (req, res, next) => {
+  const { factionId } = req.params;
+  if (!factionId) {
+    throw new ClientError(401, 'Invalid facitonId or UnitId');
+  }
+  try {
+    const sql = `
+    SELECT *
+    FROM "factionUnits"
+    JOIN "units" USING ("unitId")
+    WHERE "factionId" = $1
+    `;
+    const params = [factionId];
+    const result = await db.query(sql, params);
+    if (!result.rows) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/faction/:factionId', async (req, res, next) => {
+  const { factionId } = req.params;
+  if (!factionId) {
+    throw new ClientError(401, 'Invalid facitonId or UnitId');
+  }
+  try {
+    const sql = `
+    SELECT *
+    FROM "factions"
+    WHERE "factionId" = $1
+    `;
+    const params = [factionId];
+    const result = await db.query(sql, params);
+    if (!result.rows) {
+      throw new ClientError(401, 'Invalid Id');
+    }
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/factions', async (req, res, next) => {
+  try {
+    const sql = `
+    select *
+    from "factions"
+    `;
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.get('*', (req, res) => res.sendFile(`${reactStaticDir}/index.html`));

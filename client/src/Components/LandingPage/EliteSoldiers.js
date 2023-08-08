@@ -1,11 +1,11 @@
 import './EliteSoldiers.css';
 import { useEffect, useState } from 'react';
 import { readUnit } from '../../data';
-import FavoriteButton from './FavoriteButton';
+import FavoriteButton from '../FavoriteButton';
 
 export default function EliteSoldiers() {
   return (
-    <section className="elite-soldiers-container">
+    <section id="elite-soldiers-container">
       <h1>Elite Soldiers</h1>
       <RenderEliteSoldier
         factionId={15}
@@ -70,7 +70,7 @@ function RenderEliteSoldier({
         <p className="unit-name">
           <i>{`Faction of ${unitData.factionName}`}</i>
         </p>
-        <FavoriteButton />
+        <FavoriteButton size="sm" color="white" />
       </div>
       <div
         className="column-half desc-card"
