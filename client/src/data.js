@@ -27,3 +27,15 @@ export async function readGenerals(factionId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function postSignup(username, password) {
+  const obj = { username: username, password: password };
+  const req = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(obj),
+  };
+  const res = await fetch('/api/auth/sign-up', req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}

@@ -61,7 +61,7 @@ CREATE TABLE "public"."userArmy" (
 CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
-	"password" TEXT NOT NULL,
+	"hashedPassword" TEXT NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
