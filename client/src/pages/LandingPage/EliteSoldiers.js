@@ -1,7 +1,7 @@
 import './EliteSoldiers.css';
 import { useEffect, useState } from 'react';
 import { readUnit } from '../../data';
-import FavoriteButton from '../FavoriteButton';
+import FavoriteButton from '../../Components/FavoriteButton';
 
 export default function EliteSoldiers() {
   return (

@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
-import RenderUnits from '../RenderUnits';
-import FavoriteButton from '../FavoriteButton';
+import RenderUnits from '../../Components/RenderUnits';
+import FavoriteButton from '../../Components/FavoriteButton';
 
 export default function FactionPage() {
   const { factionId } = useParams();

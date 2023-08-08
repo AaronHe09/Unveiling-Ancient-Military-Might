@@ -1,9 +1,9 @@
-import LandingPage from './Components/LandingPage/LandingPage';
+import LandingPage from './pages/LandingPage/LandingPage';
 import NavBar from './Components/NavBar';
-import Login from './Components/Login/Login';
-import Factions from './Components/Factions/Factions';
-import FactionPage from './Components/Factions/FactionPage';
-import BuildYourArmy from './Components/BuildYourArmy/BuildYourArmy';
+import Login from './pages/Login/Login';
+import Factions from './pages/Factions/Factions';
+import FactionPage from './pages/Factions/FactionPage';
+import BuildYourArmy from './pages/BuildYourArmy/BuildYourArmy';
 import './App.css';
 import './layout.css';
 import { Routes, Route } from 'react-router-dom';
