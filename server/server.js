@@ -28,7 +28,7 @@ app.get('/api/generals/:factionId', async (req, res, next) => {
   try {
     const { factionId } = req.params;
     if (!factionId) {
-      throw new ClientError(401, 'Invalid factionId or UnitId');
+      throw new ClientError(401, 'factionId is required');
     }
     const sql = `
       SELECT *
@@ -50,7 +50,7 @@ app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
   try {
     const { factionId, unitId } = req.params;
     if (!factionId || !unitId) {
-      throw new ClientError(401, 'Invalid factionId or UnitId');
+      throw new ClientError(401, 'factionId and UnitId are required');
     }
     const sql = `
       SELECT *
@@ -75,7 +75,7 @@ app.get('/api/unit/:factionId/:unitId', async (req, res, next) => {
 app.get('/api/faction-units/:factionId', async (req, res, next) => {
   const { factionId } = req.params;
   if (!factionId) {
-    throw new ClientError(401, 'Invalid facitonId or UnitId');
+    throw new ClientError(401, 'factionId and UnitId are required');
   }
   try {
     const sql = `
@@ -98,7 +98,7 @@ app.get('/api/faction-units/:factionId', async (req, res, next) => {
 app.get('/api/faction/:factionId', async (req, res, next) => {
   const { factionId } = req.params;
   if (!factionId) {
-    throw new ClientError(401, 'Invalid facitonId or UnitId');
+    throw new ClientError(401, 'factionId and UnitId are required');
   }
   try {
     const sql = `
