@@ -35,12 +35,12 @@
   flex-basis: 33%;
   margin-bottom: 1rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .faction-card h3 {
   text-align: center;
   font-size: 1.1rem;
-  text-decoration: none;
   color: white;
 }
 
