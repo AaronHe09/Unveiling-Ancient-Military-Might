@@ -18,7 +18,7 @@ export default function NavBar() {
         <nav className="column-half">
           <ul>
             <li>
-              <Link to="/login">{user ? user.payload.username : 'Login'}</Link>
+              <Link to="/login">{user ? user.username : 'Login'}</Link>
             </li>
             <li>
               <Link to="/factions">Factions</Link>

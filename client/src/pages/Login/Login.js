@@ -18,7 +18,7 @@ export default function Login({ setUserInfo }) {
       const { payload, token } = data;
       const obj = { username: payload.username, token };
       localStorage.setItem('token', JSON.stringify(obj));
-      setUserInfo(data);
+      setUserInfo(obj);
       setLoginError(undefined);
       e.target.reset();
       navigate('/');
