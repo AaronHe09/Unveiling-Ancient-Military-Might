@@ -4,6 +4,7 @@ import errorMiddleware from './lib/error-middleware.js';
 import pg from 'pg';
 import ClientError from './lib/client-error.js';
 import argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -169,6 +170,32 @@ app.delete('/api/delete-user/:userId', async (req, res, next) => {
       throw new ClientError(404, `Entry with id ${userId} is not found`);
     }
     res.status(204).json(deleted);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/auth/sign-in', async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      throw new ClientError(401, 'invalid login');
+    }
+    const sql = `
+    select "userId", "hashedPassword"
+    from "users"
+    where "username" = $1
+    `;
+    const params = [username];
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) throw new ClientError(401, 'invalid username');
+    const { userId, hashedPassword } = user;
+    const isMatching = await argon2.verify(hashedPassword, password);
+    if (!isMatching) throw new ClientError(401, 'invalid password');
+    const payload = { userId, username };
+    const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+    res.status(200).json({ payload, token });
   } catch (err) {
     next(err);
   }
