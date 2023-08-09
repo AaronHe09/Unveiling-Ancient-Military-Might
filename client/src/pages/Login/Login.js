@@ -1,5 +1,5 @@
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { postSignin } from '../../data';
 
@@ -7,6 +7,7 @@ export default function Login({ setUserInfo }) {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [loginError, setLoginError] = useState(undefined);
+  const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -18,6 +19,7 @@ export default function Login({ setUserInfo }) {
       setUserInfo(data);
       setLoginError(undefined);
       e.target.reset();
+      navigate('/');
     } catch {
       setLoginError('Invalid username or password');
     }

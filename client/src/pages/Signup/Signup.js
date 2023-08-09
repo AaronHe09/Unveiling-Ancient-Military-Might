@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 import { useState } from 'react';
 import { postSignup } from '../../data';
@@ -6,11 +6,13 @@ import { postSignup } from '../../data';
 export default function SignUp() {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+  const navigate = useNavigate();
 
   async function handleSignup(e) {
     e.preventDefault();
     try {
       await postSignup(username, password);
+      navigate('/login');
     } catch (err) {
       alert(err.message);
     }

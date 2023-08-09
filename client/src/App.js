@@ -26,7 +26,7 @@ function App() {
   return (
     <UserContext.Provider value={userInfo}>
       <Routes>
-        <Route path="/" element={<NavBar userInfo={userInfo} />}>
+        <Route path="/" element={<NavBar />}>
           <Route index element={<LandingPage />} />
           <Route
             path="/login"
