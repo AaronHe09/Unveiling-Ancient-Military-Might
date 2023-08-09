@@ -7,16 +7,20 @@ export default function SignUp() {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
-  function handleSubmit(e) {
+  async function handleSignup(e) {
     e.preventDefault();
-    postSignup(username, password);
+    try {
+      await handleSignup(username, password);
+    } catch (err) {
+      alert(err.message);
+    }
     e.target.reset();
   }
 
   return (
     <main>
       <div id="signup-container">
-        <form id="signup" onSubmit={(e) => handleSubmit(e)}>
+        <form id="signup" onSubmit={(e) => handleSignup(e)}>
           <fieldset>
             <legend>Sign up</legend>
             <div>
