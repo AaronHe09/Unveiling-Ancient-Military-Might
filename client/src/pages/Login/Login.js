@@ -2,8 +2,6 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { postSignin } from '../../data';
-import { useContext } from 'react';
-import UserContext from '../../Components/UserContext';
 
 export default function Login({ setUserInfo }) {
   const [username, setUsername] = useState(undefined);
