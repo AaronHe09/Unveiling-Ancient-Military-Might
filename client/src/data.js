@@ -77,5 +77,4 @@ export async function deleteGeneral(generalId) {
   };
   const res = await fetch(`/api/delete-general/${generalId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
-  return await res.json();
 }
