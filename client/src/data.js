@@ -51,3 +51,17 @@ export async function postSignin(username, password) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function postGeneral(generalId) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch(`/api/fav/general/${generalId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
