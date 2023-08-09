@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { postSignin } from '../../data';
 
-export default function Login() {
+export default function Login({ setUserInfo }) {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [loginError, setLoginError] = useState(undefined);
@@ -15,6 +15,7 @@ export default function Login() {
       const { payload, token } = data;
       const obj = { username: payload.username, token };
       localStorage.setItem('token', JSON.stringify(obj));
+      setUserInfo(data);
       setLoginError(undefined);
       e.target.reset();
     } catch {
