@@ -29,13 +29,25 @@ export async function readGenerals(factionId) {
 }
 
 export async function postSignup(username, password) {
-  const obj = { username: username, password: password };
+  const obj = { username, password };
   const req = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(obj),
   };
   const res = await fetch('/api/auth/sign-up', req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+export async function postSignin(username, password) {
+  const obj = { username, password };
+  const req = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(obj),
+  };
+  const res = await fetch('/api/auth/sign-in', req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }

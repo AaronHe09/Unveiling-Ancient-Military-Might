@@ -62,3 +62,8 @@
   color: var(--gold);
   text-decoration: none;
 }
+
+#login .login-error {
+  text-align: start;
+  color: rgb(255, 43, 43);
+}
