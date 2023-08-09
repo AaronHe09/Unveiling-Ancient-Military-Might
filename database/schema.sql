@@ -71,7 +71,7 @@ CREATE TABLE "public"."users" (
 
 CREATE TABLE "public"."userUnits" (
 	"userUnitsId" serial NOT NULL,
-	"userArmyId" integer NOT NULL,
+	"userId" integer NOT NULL,
 	"unitId" integer NOT NULL,
 	CONSTRAINT "userUnits_pk" PRIMARY KEY ("userUnitsId")
 ) WITH (
@@ -98,8 +98,7 @@ ALTER TABLE "generals" ADD CONSTRAINT "generals_fk0" FOREIGN KEY ("factionId") R
 ALTER TABLE "userArmy" ADD CONSTRAINT "userArmy_fk0" FOREIGN KEY ("generalId") REFERENCES "generals"("generalId");
 ALTER TABLE "userArmy" ADD CONSTRAINT "userArmy_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-
-ALTER TABLE "userUnits" ADD CONSTRAINT "userUnits_fk0" FOREIGN KEY ("userArmyId") REFERENCES "userArmy"("userArmyId");
+ALTER TABLE "userUnits" ADD CONSTRAINT "userUnits_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 ALTER TABLE "userUnits" ADD CONSTRAINT "userUnits_fk1" FOREIGN KEY ("unitId") REFERENCES "units"("unitId");
 
 ALTER TABLE "factionUnits" ADD CONSTRAINT "factionUnits_fk0" FOREIGN KEY ("factionId") REFERENCES "factions"("factionId");

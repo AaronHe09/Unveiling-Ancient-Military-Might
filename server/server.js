@@ -5,6 +5,7 @@ import pg from 'pg';
 import ClientError from './lib/client-error.js';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
+import { authorizationMiddleware } from './lib/authorization-middleware.js';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -152,29 +153,6 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
   }
 });
 
-app.delete('/api/delete-user/:userId', async (req, res, next) => {
-  try {
-    const { userId } = req.params;
-    if (!userId) {
-      throw new ClientError(400, `userId is required`);
-    }
-    const sql = `
-      delete from "users"
-      where "userId" = $1
-      returning *
-    `;
-    const params = [userId];
-    const result = await db.query(sql, params);
-    const [deleted] = result.rows;
-    if (!deleted) {
-      throw new ClientError(404, `Entry with id ${userId} is not found`);
-    }
-    res.status(204).json(deleted);
-  } catch (err) {
-    next(err);
-  }
-});
-
 app.post('/api/auth/sign-in', async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -196,6 +174,80 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     const payload = { userId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
     res.status(200).json({ payload, token });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post(
+  '/api/fav/general/:generalId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) {
+        throw new ClientError(401, 'not logged in');
+      }
+      const { generalId } = req.params;
+      const sql = `
+    insert into "userArmy" ("userId", "generalId")
+    values($1, $2)
+    returning *
+    `;
+      const params = [req.user.userId, generalId];
+      const result = await db.query(sql, params);
+      const [general] = result.rows;
+      if (!general)
+        throw new ClientError(404, `General with id ${generalId} not found`);
+      res.status(201).json(general);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+app.delete(
+  '/api/delete-general/:generalId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) throw new ClientError(401, 'not logged in');
+      const { generalId } = req.params;
+      const sql = `
+    delete from "userArmy"
+    where "userId" = $1
+    and "generalId" = $2
+    returning *
+    `;
+      const params = [req.user.userId, generalId];
+      const result = await db.query(sql, params);
+      const [deleted] = result.rows;
+      if (!deleted)
+        throw new ClientError(404, `General with id ${generalId} not found`);
+      res.status(201).json(deleted);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+app.delete('/api/delete-user/:userId', async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    if (!userId) {
+      throw new ClientError(400, `userId is required`);
+    }
+    const sql = `
+      delete from "users"
+      where "userId" = $1
+      returning *
+    `;
+    const params = [userId];
+    const result = await db.query(sql, params);
+    const [deleted] = result.rows;
+    if (!deleted) {
+      throw new ClientError(404, `Entry with id ${userId} is not found`);
+    }
+    res.status(204).json(deleted);
   } catch (err) {
     next(err);
   }
