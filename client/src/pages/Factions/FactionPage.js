@@ -68,7 +68,7 @@ function RenderGenerals({ factionGenerals }) {
         const { desc, generalIcon, name, generalId } = general;
         return (
           <div key={generalId} className="general">
-            <FavoriteButton color="black" size="sm" generalId={generalId} />
+            <FavoriteButton color="black" size="sm" id={generalId} />
             <div className="general-img-wrapper">
               <img src={generalIcon} alt={name} />
             </div>

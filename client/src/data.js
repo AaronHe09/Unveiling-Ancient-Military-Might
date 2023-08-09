@@ -65,3 +65,17 @@ export async function postGeneral(generalId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function deleteGeneral(generalId) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch(`/api/delete-general/${generalId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}

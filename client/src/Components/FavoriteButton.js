@@ -3,17 +3,18 @@ import { faStar as regular } from '@fortawesome/free-regular-svg-icons';
 import { faStar as solid } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import './FavoriteButton.css';
-import { postGeneral } from '../data';
+import { postGeneral, deleteGeneral } from '../data';
 
-export default function FavoriteButton({ size, color, generalId }) {
+export default function FavoriteButton({ size, color, id }) {
   const [favorited, setFavorited] = useState(regular);
 
   async function handleFavorited() {
     if (favorited === regular) {
       setFavorited(solid);
-      await postGeneral(generalId);
+      await postGeneral(id);
     } else {
       setFavorited(regular);
+      await deleteGeneral(id);
     }
   }
 
