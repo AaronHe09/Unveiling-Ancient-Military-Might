@@ -1,13 +1,15 @@
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { postSignin } from '../../data';
+import UserContext from '../../Components/UserContext';
 
 export default function Login({ setUserInfo }) {
   const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [loginError, setLoginError] = useState(undefined);
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -25,36 +27,52 @@ export default function Login({ setUserInfo }) {
     }
   }
 
+  function handleLogout() {
+    localStorage.removeItem('token');
+    setUserInfo(undefined);
+    navigate('/login');
+  }
+
   return (
     <main>
-      <div id="login-container">
-        <form id="login" onSubmit={(e) => handleLogin(e)}>
-          <fieldset>
-            <legend>Login</legend>
-            <p className="login-error">{loginError}</p>
-            <div>
-              <input
-                type="text"
-                placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <button>Login</button>
-            <p>
-              Don't have an account? <Link to="/signup">Sign Up</Link>
-            </p>
-          </fieldset>
-        </form>
-      </div>
+      {!user && (
+        <div id="login-container">
+          <form id="login" onSubmit={(e) => handleLogin(e)}>
+            <fieldset>
+              <legend>Login</legend>
+              <p className="login-error">{loginError}</p>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <button>Login</button>
+              <p>
+                Don't have an account? <Link to="/signup">Sign Up</Link>
+              </p>
+            </fieldset>
+          </form>
+        </div>
+      )}
+      {user && (
+        <div id="logout">
+          <p>Welcome, {user.username}</p>
+          <button type="button" onClick={() => handleLogout()}>
+            Log Out
+          </button>
+        </div>
+      )}
     </main>
   );
 }

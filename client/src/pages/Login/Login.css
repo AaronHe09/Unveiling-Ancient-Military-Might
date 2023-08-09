@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--blue);
-  border: 1px solid var(--gold);
+  border: 2px solid var(--gold);
   border-radius: 10px;
   padding: 3rem 1rem;
   font-family: 'Source Serif 4', serif;
@@ -66,4 +66,32 @@
 #login .login-error {
   text-align: start;
   color: rgb(255, 43, 43);
+}
+
+#logout {
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue);
+  border: 2px solid var(--gold);
+}
+
+#logout p {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+#logout button {
+  width: 200px;
+  height: 40px;
+  border: none;
+  font-family: 'Source Serif 4', serif;
+  background-color: var(--gold);
+  color: white;
 }
