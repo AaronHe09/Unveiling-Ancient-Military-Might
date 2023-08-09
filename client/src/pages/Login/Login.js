@@ -4,14 +4,17 @@ import { useState } from 'react';
 import { postSignin } from '../../data';
 
 export default function Login() {
-  const [usernamee, setUsername] = useState(undefined);
+  const [username, setUsername] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [loginError, setLoginError] = useState(undefined);
 
   async function handleLogin(e) {
     e.preventDefault();
     try {
-      const data = await postSignin(usernamee, password);
+      const data = await postSignin(username, password);
+      const { payload, token } = data;
+      const obj = { username: payload.username, token };
+      localStorage.setItem('token', JSON.stringify(obj));
       setLoginError(undefined);
       e.target.reset();
     } catch {
