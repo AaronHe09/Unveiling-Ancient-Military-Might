@@ -5,16 +5,22 @@ import { useState } from 'react';
 import './FavoriteButton.css';
 import { postGeneral, deleteGeneral } from '../data';
 
-export default function FavoriteButton({ size, color, id }) {
+export default function FavoriteButton({ size, color, id, type, factionId }) {
   const [favorited, setFavorited] = useState(regular);
 
   async function handleFavorited() {
     if (favorited === regular) {
       setFavorited(solid);
-      await postGeneral(id);
+      if (type === 'general') {
+        await postGeneral(id);
+      } else {
+      }
     } else {
       setFavorited(regular);
-      await deleteGeneral(id);
+      if (type === 'general') {
+        await deleteGeneral(id);
+      } else {
+      }
     }
   }
 
