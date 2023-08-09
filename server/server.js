@@ -132,6 +132,60 @@ app.get('/api/factions', async (req, res, next) => {
   }
 });
 
+app.get(
+  '/api/user-unit/:unitId/:factionId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) {
+        throw new ClientError(401, 'not logged in');
+      }
+      const { unitId, factionId } = req.params;
+      const sql = `
+    select *
+    from "userUnits"
+    where "userId" = $1
+    and "unitId" = $2
+    and "factionId" = $3
+    `;
+      const params = [req.user.userId, unitId, factionId];
+      const result = await db.query(sql, params);
+      const [unit] = result.rows;
+      if (!unit) throw new ClientError(404, `Unit with id ${unitId} not found`);
+      res.status(201).json(unit);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+app.get(
+  '/api/user-general/:generalId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) {
+        throw new ClientError(401, 'not logged in');
+      }
+      const { generalId } = req.params;
+      const sql = `
+    select *
+    from "userArmy"
+    where "userId" = $1
+    and "generalId" = $2
+    `;
+      const params = [req.user.userId, generalId];
+      const result = await db.query(sql, params);
+      const [general] = result.rows;
+      if (!general)
+        throw new ClientError(404, `Unit with id ${generalId} not found`);
+      res.status(201).json(general);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -223,7 +277,7 @@ app.post(
       const result = await db.query(sql, params);
       const [general] = result.rows;
       if (!general)
-        throw new ClientError(404, `General with id ${unitId} not found`);
+        throw new ClientError(404, `Unit with id ${unitId} not found`);
       res.status(201).json(general);
     } catch (err) {
       next(err);
@@ -274,7 +328,7 @@ app.delete(
       const result = await db.query(sql, params);
       const [deleted] = result.rows;
       if (!deleted)
-        throw new ClientError(404, `General with id ${unitId} not found`);
+        throw new ClientError(404, `Unit with id ${unitId} not found`);
       res.status(201).json(deleted);
     } catch (err) {
       next(err);
