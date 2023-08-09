@@ -73,6 +73,7 @@ CREATE TABLE "public"."userUnits" (
 	"userUnitsId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"unitId" integer NOT NULL,
+	"factionId" integer NOT NULL,
 	CONSTRAINT "userUnits_pk" PRIMARY KEY ("userUnitsId")
 ) WITH (
   OIDS=FALSE

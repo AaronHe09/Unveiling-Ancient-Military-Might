@@ -13,13 +13,11 @@ export default function FavoriteButton({ size, color, id, type, factionId }) {
       setFavorited(solid);
       if (type === 'general') {
         await postGeneral(id);
-      } else {
       }
     } else {
       setFavorited(regular);
       if (type === 'general') {
         await deleteGeneral(id);
-      } else {
       }
     }
   }
