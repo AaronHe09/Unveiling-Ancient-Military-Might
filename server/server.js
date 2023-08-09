@@ -205,6 +205,32 @@ app.post(
   }
 );
 
+app.post(
+  '/api/fav/unit/:unitId/:factionId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) {
+        throw new ClientError(401, 'not logged in');
+      }
+      const { unitId, factionId } = req.params;
+      const sql = `
+    insert into "userUnits" ("userId", "unitId", "factionId")
+    values($1, $2, $3)
+    returning *
+    `;
+      const params = [req.user.userId, unitId, factionId];
+      const result = await db.query(sql, params);
+      const [general] = result.rows;
+      if (!general)
+        throw new ClientError(404, `General with id ${unitId} not found`);
+      res.status(201).json(general);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 app.delete(
   '/api/delete-general/:generalId',
   authorizationMiddleware,
@@ -223,6 +249,32 @@ app.delete(
       const [deleted] = result.rows;
       if (!deleted)
         throw new ClientError(404, `General with id ${generalId} not found`);
+      res.status(201).json(deleted);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+app.delete(
+  '/api/delete-unit/:unitId/:factionId',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) throw new ClientError(401, 'not logged in');
+      const { unitId, factionId } = req.params;
+      const sql = `
+    delete from "userUnits"
+    where "userId" = $1
+    and "unitId" = $2
+    and "factionId" = $3
+    returning *
+    `;
+      const params = [req.user.userId, unitId, factionId];
+      const result = await db.query(sql, params);
+      const [deleted] = result.rows;
+      if (!deleted)
+        throw new ClientError(404, `General with id ${unitId} not found`);
       res.status(201).json(deleted);
     } catch (err) {
       next(err);

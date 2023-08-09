@@ -78,3 +78,30 @@ export async function deleteGeneral(generalId) {
   const res = await fetch(`/api/delete-general/${generalId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
 }
+
+export async function postUnit(unitId, factionId) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch(`/api/fav/unit/${unitId}/${factionId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+export async function deleteUnit(unitId, factionId) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch(`/api/delete-unit/${unitId}/${factionId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+}
