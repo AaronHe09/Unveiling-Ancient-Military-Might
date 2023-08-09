@@ -10,7 +10,7 @@ export default function SignUp() {
   async function handleSignup(e) {
     e.preventDefault();
     try {
-      await handleSignup(username, password);
+      await postSignup(username, password);
     } catch (err) {
       alert(err.message);
     }
