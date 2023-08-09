@@ -1,8 +1,12 @@
 import spartanIcon from '../images/spartan-icon-white.png';
 import './NavBar.css';
 import { Outlet, Link } from 'react-router-dom';
+import UserContext from './UserContext';
+import { useContext } from 'react';
 
 export default function NavBar() {
+  const user = useContext(UserContext);
+
   return (
     <>
       <header>
@@ -14,7 +18,7 @@ export default function NavBar() {
         <nav className="column-half">
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login">{user ? user.payload.username : 'Login'}</Link>
             </li>
             <li>
               <Link to="/factions">Factions</Link>
