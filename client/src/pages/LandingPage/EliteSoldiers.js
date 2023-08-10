@@ -53,7 +53,7 @@ function RenderEliteSoldier({
         className="column-half unit-card"
         style={{
           backgroundColor: `${backgroundColor}`,
-          border: `3px solid ${borderColor}`,
+          border: `2px solid ${borderColor}`,
         }}>
         <div className="row unit-header">
           <div className="faction-icon-wrapper">
@@ -82,7 +82,7 @@ function RenderEliteSoldier({
         className="column-half desc-card"
         style={{
           backgroundColor: `${backgroundColor}`,
-          border: `3px solid ${borderColor}`,
+          border: `2px solid ${borderColor}`,
         }}>
         <p className="unit-desc">{unitData.desc}</p>
       </div>
