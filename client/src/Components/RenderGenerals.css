@@ -1,6 +1,30 @@
-.general-img-wrapper {
+#faction-page-container .general-img-wrapper {
   width: 120px;
   margin: 0 auto;
+}
+
+#faction-page-container .general {
+  position: relative;
+  flex-basis: 50%;
+}
+
+.general h3 {
+  text-align: center;
+}
+
+#army-container .general-img-wrapper {
+  width: 80px;
+  margin: 0 auto;
+}
+
+#army-container .general h3 {
+  font-size: 0.8rem;
+}
+
+#army-container .general {
+  position: relative;
+  flex-basis: 33%;
+  padding: 0.5rem;
 }
 
 .general-img-wrapper img {
@@ -8,13 +32,4 @@
   border-radius: 50%;
   border: 1px solid black;
   margin-bottom: 1rem;
-}
-
-.general h3 {
-  text-align: center;
-}
-
-.general {
-  position: relative;
-  flex-basis: 50%;
 }

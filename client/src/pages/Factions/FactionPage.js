@@ -49,7 +49,10 @@ export default function FactionPage() {
           <p>{factionDetail.history}</p>
         </div>
         <div className="row faction-generals">
-          <RenderGenerals factionGenerals={factionGenerals} />
+          <RenderGenerals
+            factionGenerals={factionGenerals}
+            showParagraph={true}
+          />
         </div>
         <div className="faction-tactics">
           <h3>Tactics</h3>

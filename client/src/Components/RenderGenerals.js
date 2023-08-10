@@ -1,7 +1,7 @@
 import FavoriteButton from './FavoriteButton';
 import './RenderGenerals.css';
 
-export default function RenderGenerals({ factionGenerals }) {
+export default function RenderGenerals({ factionGenerals, showParagraph }) {
   return (
     <>
       {factionGenerals.map((general) => {
@@ -18,7 +18,7 @@ export default function RenderGenerals({ factionGenerals }) {
               <img src={generalIcon} alt={name} />
             </div>
             <h3>{name}</h3>
-            <p>{desc}</p>
+            {showParagraph && <p>{desc}</p>}
           </div>
         );
       })}

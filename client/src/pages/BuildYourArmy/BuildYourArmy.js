@@ -23,10 +23,14 @@ export default function BuildYourArmy() {
   return (
     <main>
       <div id="army-container">
-        <h1>Army</h1>
-        <section>
+        <section className="user-generals">
           <h3>Generals</h3>
-          <RenderGenerals factionGenerals={userGenerals} />
+          <div className="row">
+            <RenderGenerals
+              factionGenerals={userGenerals}
+              showParagraph={false}
+            />
+          </div>
         </section>
       </div>
     </main>
