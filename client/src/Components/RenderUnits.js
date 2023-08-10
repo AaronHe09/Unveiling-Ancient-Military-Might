@@ -27,7 +27,9 @@ function Units({ currentKey, factionUnits }) {
       {currentArray.map((unit) => {
         const { imageUrl, unitName, unitId, factionId } = unit;
         return (
-          <div className="unit-img-wrapper" key={unitId}>
+          <div
+            className="unit-img-wrapper"
+            key={`${unitName}${unitId}${factionId}`}>
             <FavoriteButton
               size="xs"
               color="black"

@@ -3,7 +3,7 @@
   margin: 1rem;
   font-family: 'Source Serif 4', serif;
   color: white;
-  background-color: #3f3d3d;
+  background-color: var(--blue);
   border-radius: 10px;
   border: 2px solid var(--gold);
 }
