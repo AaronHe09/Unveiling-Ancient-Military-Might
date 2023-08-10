@@ -7,12 +7,12 @@ export default function RenderUnits({ factionUnits }) {
     <div className="faction-units">
       {keys.map((key) => {
         return (
-          <section key={key}>
+          <div key={key}>
             <h3>{key}</h3>
             <div className="row">
               <Units currentKey={key} factionUnits={factionUnits} />
             </div>
-          </section>
+          </div>
         );
       })}
     </div>
