@@ -207,6 +207,31 @@ app.get(
   }
 );
 
+app.get(
+  '/api/user-generals',
+  authorizationMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.user) {
+        throw new ClientError(401, 'not logged in');
+      }
+      const sql = `
+    select *
+    from "userArmy"
+    join "generals" using ("generalId")
+    where "userArmy"."userId" = $1
+    `;
+      const params = [req.user.userId];
+      const result = await db.query(sql, params);
+      if (!result.rows)
+        throw new ClientError(404, `User with id ${req.user.userId} not found`);
+      res.status(201).json(result.rows);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
     const { username, password } = req.body;
