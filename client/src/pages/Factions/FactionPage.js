@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
 import RenderUnits from '../../Components/RenderUnits';
-import FavoriteButton from '../../Components/FavoriteButton';
+import RenderGenerals from '../../Components/RenderGenerals';
 
 export default function FactionPage() {
   const { factionId } = useParams();
@@ -49,39 +49,17 @@ export default function FactionPage() {
           <p>{factionDetail.history}</p>
         </div>
         <div className="row faction-generals">
-          <RenderGenerals factionGenerals={factionGenerals} />
+          <RenderGenerals
+            factionGenerals={factionGenerals}
+            showParagraph={true}
+          />
         </div>
         <div className="faction-tactics">
           <h3>Tactics</h3>
           <p>{factionDetail.tactics}</p>
         </div>
-        <RenderUnits factionUnits={factionUnits} factionId={factionId} />
+        <RenderUnits factionUnits={factionUnits} />
       </div>
     </main>
-  );
-}
-
-function RenderGenerals({ factionGenerals }) {
-  return (
-    <>
-      {factionGenerals.map((general) => {
-        const { desc, generalIcon, name, generalId } = general;
-        return (
-          <div key={generalId} className="general">
-            <FavoriteButton
-              color="black"
-              size="sm"
-              id={generalId}
-              type="general"
-            />
-            <div className="general-img-wrapper">
-              <img src={generalIcon} alt={name} />
-            </div>
-            <h3>{name}</h3>
-            <p>{desc}</p>
-          </div>
-        );
-      })}
-    </>
   );
 }

@@ -28,6 +28,8 @@ export async function readGenerals(factionId) {
   return await res.json();
 }
 
+// user login & logout
+
 export async function postSignup(username, password) {
   const obj = { username, password };
   const req = {
@@ -51,6 +53,8 @@ export async function postSignin(username, password) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+// user favorited
 
 export async function postGeneral(generalId) {
   const token = JSON.parse(localStorage.getItem('token'));
@@ -130,6 +134,35 @@ export async function readUserGeneral(generalId) {
     },
   };
   const res = await fetch(`/api/user-general/${generalId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+// fetch data for user army
+export async function readUserUnits() {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch('/api/user-units', req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+export async function readUserGenerals() {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch('/api/user-generals', req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }

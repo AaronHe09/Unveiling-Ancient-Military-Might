@@ -1,37 +1,35 @@
 import './RenderUnits.css';
 import FavoriteButton from './FavoriteButton';
 
-export default function RenderUnits({ factionUnits, factionId }) {
+export default function RenderUnits({ factionUnits }) {
   const keys = Object.keys(factionUnits);
   return (
     <div className="faction-units">
       {keys.map((key) => {
         return (
-          <section key={key}>
+          <div key={key}>
             <h3>{key}</h3>
             <div className="row">
-              <Units
-                currentKey={key}
-                factionUnits={factionUnits}
-                factionId={factionId}
-              />
+              <Units currentKey={key} factionUnits={factionUnits} />
             </div>
-          </section>
+          </div>
         );
       })}
     </div>
   );
 }
 
-function Units({ currentKey, factionUnits, factionId }) {
+function Units({ currentKey, factionUnits }) {
   const currentArray = factionUnits[currentKey];
 
   return (
     <>
       {currentArray.map((unit) => {
-        const { imageUrl, unitName, unitId } = unit;
+        const { imageUrl, unitName, unitId, factionId } = unit;
         return (
-          <div className="unit-img-wrapper" key={unitId}>
+          <div
+            className="unit-img-wrapper"
+            key={`${unitName}${unitId}${factionId}`}>
             <FavoriteButton
               size="xs"
               color="black"
