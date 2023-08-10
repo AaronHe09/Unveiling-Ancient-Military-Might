@@ -55,7 +55,7 @@ export default function FactionPage() {
           <h3>Tactics</h3>
           <p>{factionDetail.tactics}</p>
         </div>
-        <RenderUnits factionUnits={factionUnits} />
+        <RenderUnits factionUnits={factionUnits} factionId={factionId} />
       </div>
     </main>
   );
@@ -68,7 +68,12 @@ function RenderGenerals({ factionGenerals }) {
         const { desc, generalIcon, name, generalId } = general;
         return (
           <div key={generalId} className="general">
-            <FavoriteButton color="black" size="sm" />
+            <FavoriteButton
+              color="black"
+              size="sm"
+              id={generalId}
+              type="general"
+            />
             <div className="general-img-wrapper">
               <img src={generalIcon} alt={name} />
             </div>

@@ -70,7 +70,13 @@ function RenderEliteSoldier({
         <p className="unit-name">
           <i>{`Faction of ${unitData.factionName}`}</i>
         </p>
-        <FavoriteButton size="sm" color="white" />
+        <FavoriteButton
+          size="sm"
+          color="white"
+          id={unitId}
+          factionId={factionId}
+          type="unit"
+        />
       </div>
       <div
         className="column-half desc-card"
