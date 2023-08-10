@@ -2,6 +2,7 @@ import './BuildYourArmy.css';
 import { useState, useEffect } from 'react';
 import { readUserUnits, readUserGenerals } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
+import RenderUnits from '../../Components/RenderUnits';
 
 export default function BuildYourArmy() {
   const [userUnits, setUserUnits] = useState([]);
@@ -12,7 +13,14 @@ export default function BuildYourArmy() {
       try {
         const unitsData = await readUserUnits();
         const generalsData = await readUserGenerals();
+        const groupBy = unitsData.reduce((obj, cur) => {
+          obj[cur.unitType] = obj[cur.unitType] || [];
+          obj[cur.unitType].push(cur);
+          return obj;
+        }, {});
+        console.log(groupBy);
         setUserGenerals(generalsData);
+        setUserUnits(groupBy);
       } catch (err) {
         console.error(err);
       }
@@ -32,6 +40,7 @@ export default function BuildYourArmy() {
             />
           </div>
         </section>
+        <div></div>
       </div>
     </main>
   );
