@@ -105,3 +105,31 @@ export async function deleteUnit(unitId, factionId) {
   const res = await fetch(`/api/delete-unit/${unitId}/${factionId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
 }
+
+export async function readUserUnit(unitId, factionId) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch(`/api/user-unit/${unitId}/${factionId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+export async function readUserGeneral(generalId) {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const req = {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  };
+  const res = await fetch(`/api/user-general/${generalId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}

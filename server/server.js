@@ -151,7 +151,7 @@ app.get(
       const params = [req.user.userId, unitId, factionId];
       const result = await db.query(sql, params);
       const [unit] = result.rows;
-      if (!unit) throw new ClientError(404, `Unit with id ${unitId} not found`);
+      if (!unit) res.json(false);
       res.status(201).json(unit);
     } catch (err) {
       next(err);
@@ -177,8 +177,7 @@ app.get(
       const params = [req.user.userId, generalId];
       const result = await db.query(sql, params);
       const [general] = result.rows;
-      if (!general)
-        throw new ClientError(404, `Unit with id ${generalId} not found`);
+      if (!general) res.json(false);
       res.status(201).json(general);
     } catch (err) {
       next(err);
