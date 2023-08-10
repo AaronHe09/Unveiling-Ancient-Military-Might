@@ -168,6 +168,7 @@ app.get('/api/user-units', authorizationMiddleware, async (req, res, next) => {
     select *
     from "userUnits"
     join "factionUnits" using ("unitId" ,"factionId")
+    join "units" using ("unitId")
     where "userUnits"."userId" = $1
     `;
     const params = [req.user.userId];
