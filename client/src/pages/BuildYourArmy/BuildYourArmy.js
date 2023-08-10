@@ -1,6 +1,7 @@
 import './BuildYourArmy.css';
 import { useState, useEffect } from 'react';
 import { readUserUnits, readUserGenerals } from '../../data';
+import RenderGenerals from '../../Components/RenderGenerals';
 
 export default function BuildYourArmy() {
   const [userUnits, setUserUnits] = useState([]);
@@ -10,7 +11,8 @@ export default function BuildYourArmy() {
     async function fetchUserData() {
       try {
         const unitsData = await readUserUnits();
-        console.log(unitsData);
+        const generalsData = await readUserGenerals();
+        setUserGenerals(generalsData);
       } catch (err) {
         console.error(err);
       }
@@ -20,7 +22,13 @@ export default function BuildYourArmy() {
 
   return (
     <main>
-      <div id="army-container"></div>
+      <div id="army-container">
+        <h1>Army</h1>
+        <section>
+          <h3>Generals</h3>
+          <RenderGenerals factionGenerals={userGenerals} />
+        </section>
+      </div>
     </main>
   );
 }

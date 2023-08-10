@@ -1,4 +1,5 @@
 import FavoriteButton from './FavoriteButton';
+import './RenderGenerals.css';
 
 export default function RenderGenerals({ factionGenerals }) {
   return (
