@@ -151,7 +151,7 @@ app.get(
       const params = [req.user.userId, unitId, factionId];
       const result = await db.query(sql, params);
       const [unit] = result.rows;
-      if (!unit) res.json(false);
+      if (!unit) return res.json(false);
       res.status(201).json(unit);
     } catch (err) {
       next(err);
@@ -199,7 +199,7 @@ app.get(
       const params = [req.user.userId, generalId];
       const result = await db.query(sql, params);
       const [general] = result.rows;
-      if (!general) res.json(false);
+      if (!general) return res.json(false);
       res.status(201).json(general);
     } catch (err) {
       next(err);
