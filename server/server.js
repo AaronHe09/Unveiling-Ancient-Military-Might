@@ -159,6 +159,27 @@ app.get(
   }
 );
 
+app.get('/api/user-units', authorizationMiddleware, async (req, res, next) => {
+  try {
+    if (!req.user) {
+      throw new ClientError(401, 'not logged in');
+    }
+    const sql = `
+    select *
+    from "userUnits"
+    join "factionUnits" using ("unitId" ,"factionId")
+    where "userUnits"."userId" = $1
+    `;
+    const params = [req.user.userId];
+    const result = await db.query(sql, params);
+    if (!result.rows)
+      throw new ClientError(404, `User with id ${req.user.userId} not found`);
+    res.status(201).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get(
   '/api/user-general/:generalId',
   authorizationMiddleware,

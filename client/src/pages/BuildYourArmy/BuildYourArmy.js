@@ -1,3 +1,9 @@
+import './BuildYourArmy.css';
+
 export default function BuildYourArmy() {
-  return <div>build your army</div>;
+  return (
+    <main>
+      <div id="army-container"></div>
+    </main>
+  );
 }
