@@ -18,3 +18,9 @@
 .faction-units .unit-img-wrapper img {
   width: 100%;
 }
+
+@media screen and (width >=1025px) {
+  .faction-units .unit-img-wrapper {
+    width: 60px;
+  }
+}

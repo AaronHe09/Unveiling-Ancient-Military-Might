@@ -32,3 +32,17 @@
   border: 1px solid black;
   margin-bottom: 1rem;
 }
+
+@media screen and (width >=1025px) {
+  #faction-page-container .general-img-wrapper {
+    width: 200px;
+  }
+
+  #army-container .general-img-wrapper {
+    width: 150px;
+  }
+
+  #army-container .general h3 {
+    font-size: 1.2rem;
+  }
+}
