@@ -18,7 +18,6 @@ export default function BuildYourArmy() {
           obj[cur.unitType].push(cur);
           return obj;
         }, {});
-        console.log(groupBy);
         setUserGenerals(generalsData);
         setUserUnits(groupBy);
       } catch (err) {

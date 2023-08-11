@@ -6,25 +6,27 @@ import FavoriteButton from '../../Components/FavoriteButton';
 export default function EliteSoldiers() {
   return (
     <section id="elite-soldiers-container">
-      <h1>Elite Soldiers</h1>
-      <RenderEliteSoldier
-        factionId={15}
-        unitId={62}
-        backgroundColor="#600502"
-        borderColor="#CBDAD7"
-      />
-      <RenderEliteSoldier
-        factionId={1}
-        unitId={15}
-        backgroundColor="#68483C"
-        borderColor="#A69182"
-      />
-      <RenderEliteSoldier
-        factionId={17}
-        unitId={68}
-        backgroundColor="#A62416"
-        borderColor="#DB9124"
-      />
+      <div className="column-full">
+        <h1>Elite Soldiers</h1>
+        <RenderEliteSoldier
+          factionId={15}
+          unitId={62}
+          backgroundColor="#600502"
+          borderColor="#CBDAD7"
+        />
+        <RenderEliteSoldier
+          factionId={1}
+          unitId={15}
+          backgroundColor="#68483C"
+          borderColor="#A69182"
+        />
+        <RenderEliteSoldier
+          factionId={17}
+          unitId={68}
+          backgroundColor="#A62416"
+          borderColor="#DB9124"
+        />
+      </div>
     </section>
   );
 }
@@ -53,7 +55,7 @@ function RenderEliteSoldier({
         className="column-half unit-card"
         style={{
           backgroundColor: `${backgroundColor}`,
-          border: `3px solid ${borderColor}`,
+          border: `2px solid ${borderColor}`,
         }}>
         <div className="row unit-header">
           <div className="faction-icon-wrapper">
@@ -82,7 +84,7 @@ function RenderEliteSoldier({
         className="column-half desc-card"
         style={{
           backgroundColor: `${backgroundColor}`,
-          border: `3px solid ${borderColor}`,
+          border: `2px solid ${borderColor}`,
         }}>
         <p className="unit-desc">{unitData.desc}</p>
       </div>

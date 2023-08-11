@@ -1,14 +1,17 @@
 #intro-page-container {
   font-family: 'DM Serif Display', serif;
+  margin-bottom: 5rem;
+  padding: 0 1rem;
 }
 
 /* cross sword and h1 */
 #intro-page-container .column-full {
-  padding: 0 1rem;
   text-align: center;
+  max-width: 1375px;
+  margin: 0 auto;
 }
 
-.column-full div:first-child {
+#intro-page-container .column-full div:first-child {
   position: relative;
   margin-bottom: 7.5rem;
 }
@@ -59,4 +62,46 @@
   font-family: 'Source Serif 4', serif;
   font-weight: 800;
   font-size: 1rem;
+}
+
+@media screen and (width >=1025px) {
+  #intro-page-container {
+    margin-bottom: 12rem;
+  }
+
+  #intro-page-container h1 {
+    font-size: 6rem;
+    line-height: 5rem;
+  }
+
+  .cross-sword-wrapper {
+    width: 200px;
+    top: 60%;
+  }
+
+  #intro-page-container .column-full div:first-child {
+    margin-bottom: 12rem;
+  }
+
+  #intro-page-container p {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+
+  #intro-page-container i {
+    font-size: 0.85rem;
+  }
+
+  #intro-page-container h2 {
+    font-size: 1.5rem;
+    margin-top: 5rem;
+  }
+
+  .red-letter {
+    color: black;
+  }
+
+  .red-letter-desk {
+    color: #620000;
+  }
 }

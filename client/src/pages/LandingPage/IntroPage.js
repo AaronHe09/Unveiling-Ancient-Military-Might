@@ -7,7 +7,9 @@ export default function IntroPage() {
       <div className="column-full">
         <div>
           <h1>
-            Unveiling Ancient Milit<span className="red-letter">a</span>ry{' '}
+            Unveiling Anc<span className="red-letter-desk">i</span>ent{' '}
+            <span className="red-letter-desk">M</span>ilit
+            <span className="red-letter">a</span>ry{' '}
             <span className="red-letter">M</span>ight
           </h1>
           <div className="cross-sword-wrapper">

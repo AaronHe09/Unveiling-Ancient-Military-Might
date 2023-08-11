@@ -18,3 +18,9 @@
   flex-wrap: wrap;
   padding: 1rem;
 }
+
+@media screen and (width >=1025px) {
+  #army-container h3 {
+    font-size: 1.5rem;
+  }
+}

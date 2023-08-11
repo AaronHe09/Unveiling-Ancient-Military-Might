@@ -35,7 +35,7 @@ export default function FactionPage() {
   return (
     <main id="faction-page-container">
       <div>
-        <div className="faction-header">
+        <section className="faction-header">
           <div className="icon-wrapper">
             <img
               src={factionDetail.factionIcon}
@@ -43,22 +43,24 @@ export default function FactionPage() {
             />
           </div>
           <h1>{factionDetail.factionName}</h1>
-        </div>
-        <div className="faction-desc">
+        </section>
+        <section className="faction-desc">
           <h3>About</h3>
           <p>{factionDetail.history}</p>
-        </div>
-        <div className="row faction-generals">
+        </section>
+        <section className="row faction-generals">
           <RenderGenerals
             factionGenerals={factionGenerals}
             showParagraph={true}
           />
-        </div>
-        <div className="faction-tactics">
+        </section>
+        <section className="faction-tactics">
           <h3>Tactics</h3>
           <p>{factionDetail.tactics}</p>
-        </div>
-        <RenderUnits factionUnits={factionUnits} />
+        </section>
+        <section>
+          <RenderUnits factionUnits={factionUnits} />
+        </section>
       </div>
     </main>
   );
