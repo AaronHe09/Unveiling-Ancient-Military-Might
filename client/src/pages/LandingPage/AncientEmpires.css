@@ -1,9 +1,12 @@
 #ancient-empires-container {
   padding: 0 1rem;
   font-family: 'DM Serif Display', serif;
+  display: flex;
+  justify-content: center;
 }
 
 #ancient-empires-container h1 {
+  align-self: flex-start;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
@@ -33,4 +36,33 @@
   max-width: 170px;
   margin: 0 auto;
   margin-top: 1rem;
+}
+
+@media screen and (width >=1025px) {
+  #ancient-empires-container .img-wrapper {
+    height: 500px;
+  }
+
+  #ancient-empires-container .column-full {
+    display: flex;
+    max-width: 1375px;
+  }
+
+  #ancient-empires-container .column-full .column-half {
+    margin: 0 0.2rem;
+  }
+
+  #ancient-empires-container .column-full .row {
+    gap: 0;
+  }
+
+  #ancient-empires-container h1 {
+    font-size: 2.3rem;
+    margin-bottom: 2rem;
+  }
+
+  #ancient-empires-container h3 {
+    font-size: 1.8rem;
+    line-height: 1.5rem;
+  }
 }

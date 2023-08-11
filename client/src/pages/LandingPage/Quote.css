@@ -13,3 +13,10 @@
   color: white;
   line-height: 1.8rem;
 }
+
+@media screen and (width >=1025px) {
+  .quote {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+}

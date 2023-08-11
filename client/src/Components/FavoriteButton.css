@@ -14,8 +14,6 @@
 
 #elite-soldiers-container #favorite-button-container {
   width: 100%;
-}
-
-#elite-soldiers-container #favorite-button-container svg {
-  float: right;
+  display: flex;
+  justify-content: flex-end;
 }
