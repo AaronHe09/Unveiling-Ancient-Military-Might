@@ -76,7 +76,6 @@
 
   .cross-sword-wrapper {
     width: 200px;
-    top: 60%;
   }
 
   #intro-page-container .column-full div:first-child {
@@ -93,15 +92,12 @@
   }
 
   #intro-page-container h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-top: 5rem;
   }
 
-  .red-letter {
-    color: black;
-  }
-
-  .red-letter-desk {
-    color: #620000;
+  .p-container {
+    width: 800px;
+    margin: 0 auto;
   }
 }

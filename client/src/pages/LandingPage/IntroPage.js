@@ -7,8 +7,8 @@ export default function IntroPage() {
       <div className="column-full">
         <div>
           <h1>
-            Unveiling Anc<span className="red-letter-desk">i</span>ent{' '}
-            <span className="red-letter-desk">M</span>ilit
+            Unveiling Ancient <br />
+            Milit
             <span className="red-letter">a</span>ry{' '}
             <span className="red-letter">M</span>ight
           </h1>
@@ -20,7 +20,7 @@ export default function IntroPage() {
             />
           </div>
         </div>
-        <div>
+        <div className="p-container">
           <p>
             Ancient empires rose and fell based on their military strength,
             strategies, and conquests. Their disciplined armies and innovative
