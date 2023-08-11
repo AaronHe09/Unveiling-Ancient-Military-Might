@@ -10,7 +10,7 @@ header {
 
 /* first column */
 header .img-wrapper {
-  max-width: 35px;
+  width: 35px;
 }
 
 header .img-wrapper img {
@@ -26,7 +26,7 @@ nav ul {
 
 nav li {
   list-style-type: none;
-  max-width: 60px;
+  width: 60px;
 }
 
 nav li:last-child {
@@ -39,4 +39,32 @@ nav a {
   text-decoration: none;
   color: white;
   font-size: 0.8rem;
+}
+
+@media screen and (width >= 1025px) {
+  header {
+    padding: 3rem 4rem;
+  }
+
+  header .img-wrapper {
+    width: 45px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  nav ul {
+    gap: 3rem;
+  }
+
+  nav li {
+    width: auto;
+  }
+
+  nav li:last-child {
+    margin-top: 0;
+  }
 }
