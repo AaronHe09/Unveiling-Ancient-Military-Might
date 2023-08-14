@@ -1,23 +1,21 @@
 #intro-page-container {
   font-family: 'DM Serif Display', serif;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 /* cross sword and h1 */
-#intro-page-container .column-full {
-  text-align: center;
-  max-width: 1375px;
-  margin: 0 auto;
-}
 
-#intro-page-container .column-full div:first-child {
+#intro-page-container div:first-child {
   position: relative;
   margin-bottom: 7.5rem;
 }
 
 #intro-page-container h1 {
-  margin-top: 5rem;
   font-size: 2.8rem;
   font-weight: 500;
   line-height: 2.5rem;
@@ -45,6 +43,7 @@
   margin-bottom: 2.5rem;
   font-family: 'Source Serif 4', serif;
   font-weight: 600;
+  max-width: 400px;
 }
 
 .disclaimer {
@@ -64,6 +63,8 @@
   font-size: 1rem;
 }
 
+/* media */
+
 @media screen and (width >=1025px) {
   #intro-page-container {
     margin-bottom: 12rem;
@@ -78,13 +79,14 @@
     width: 200px;
   }
 
-  #intro-page-container .column-full div:first-child {
+  #intro-page-container div:first-child {
     margin-bottom: 12rem;
   }
 
   #intro-page-container p {
     font-size: 1.2rem;
     line-height: 1.5rem;
+    max-width: 800px;
   }
 
   #intro-page-container i {
@@ -94,10 +96,5 @@
   #intro-page-container h2 {
     font-size: 2rem;
     margin-top: 5rem;
-  }
-
-  .p-container {
-    width: 800px;
-    margin: 0 auto;
   }
 }
