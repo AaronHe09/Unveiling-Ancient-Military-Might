@@ -10,6 +10,7 @@ import './layout.css';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import UserContext from './Components/UserContext';
+import Battlefield from './pages/Battlefield/Battlefield';
 
 function App() {
   const [userInfo, setUserInfo] = useState(undefined);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/factions/:factionId" element={<FactionPage />} />
           <Route path="/build-your-army" element={<BuildYourArmy />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/battlefield" element={<Battlefield />} />
         </Route>
       </Routes>
     </UserContext.Provider>

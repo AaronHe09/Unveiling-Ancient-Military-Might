@@ -29,10 +29,6 @@ nav li {
   width: 60px;
 }
 
-nav li:last-child {
-  margin-top: 1rem;
-}
-
 /* Links */
 
 nav a {
