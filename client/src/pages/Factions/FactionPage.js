@@ -59,7 +59,7 @@ export default function FactionPage() {
           <p>{factionDetail.tactics}</p>
         </section>
         <section>
-          <RenderUnits factionUnits={factionUnits} h3={true} />
+          <RenderUnits factionUnits={factionUnits} />
         </section>
       </div>
     </main>

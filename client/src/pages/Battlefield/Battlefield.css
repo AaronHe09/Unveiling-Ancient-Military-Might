@@ -3,7 +3,29 @@
   background-size: cover;
   width: 100%;
   height: 100vh;
+  padding: 1rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#battlefield-container .units {
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--gold);
+  margin: 1rem;
+}
+
+#battlefield-container .unit {
+  max-width: 40px;
+  flex-basis: 33%;
+}
+
+#battlefield-container .unit img {
+  width: 100%;
+}
+
+#battlefield-container .general {
+  max-width: 100px;
 }

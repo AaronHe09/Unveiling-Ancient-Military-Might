@@ -40,7 +40,7 @@ export default function BuildYourArmy() {
           </div>
         </section>
         <section className="user-units">
-          <RenderUnits factionUnits={userUnits} h3={true} />
+          <RenderUnits factionUnits={userUnits} />
         </section>
       </div>
     </main>

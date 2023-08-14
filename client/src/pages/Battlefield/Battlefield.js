@@ -1,9 +1,12 @@
 import './Battlefield.css';
 import { useEffect, useState } from 'react';
 import { readUserGenerals, readUserUnits } from '../../data';
+import RenderGenerals from '../../Components/RenderGenerals';
 
 export default function Battlefield() {
-  const [userUnits, setUserUnits] = useState([]);
+  const [infantry, setInfantry] = useState([]);
+  const [missile, setMissile] = useState([]);
+  const [cavalry, setCavalry] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
 
   useEffect(() => {
@@ -16,9 +19,16 @@ export default function Battlefield() {
           obj[cur.unitType].push(cur);
           return obj;
         }, {});
-        console.log(generalsData);
         setUserGenerals(generalsData);
-        setUserUnits(groupBy);
+        setInfantry([
+          ...groupBy['Melee Infantry'],
+          ...groupBy['Spear Infantry'],
+        ]);
+        setCavalry([
+          ...groupBy['Melee Cavalry'],
+          ...groupBy['Missile Cavalry'],
+        ]);
+        setMissile([...groupBy['Missile Infantry']]);
       } catch (err) {
         console.error(err);
       }
@@ -30,15 +40,33 @@ export default function Battlefield() {
     <main>
       <div id="battlefield-container">
         <div className="row">
-          <div className="column-half">
-            <div className="infantry"></div>
-            <div className="missile"></div>
+          <div className="column-half units row">
+            <Map array={infantry} />
           </div>
-          <div className="column-half">
-            <div className="cavalry"></div>
+          <div className="column-half units row">
+            <Map array={cavalry} />
           </div>
+        </div>
+        <div className="row">
+          <div className="column-full units row">
+            <Map array={missile} />
+          </div>
+        </div>
+        <div className="row">
+          <RenderGenerals factionGenerals={userGenerals} />
         </div>
       </div>
     </main>
   );
+}
+
+function Map({ array }) {
+  return array.map((unit) => {
+    const { imageUrl, unitName } = unit;
+    return (
+      <div className="unit">
+        <img src={imageUrl} alt={unitName} />
+      </div>
+    );
+  });
 }
