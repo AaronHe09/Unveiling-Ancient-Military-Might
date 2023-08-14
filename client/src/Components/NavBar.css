@@ -26,11 +26,6 @@ nav ul {
 
 nav li {
   list-style-type: none;
-  width: 60px;
-}
-
-nav li:last-child {
-  margin-top: 1rem;
 }
 
 /* Links */
@@ -39,6 +34,11 @@ nav a {
   text-decoration: none;
   color: white;
   font-size: 0.8rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--blue);
+  }
 }
 
 @media screen and (width >= 1025px) {

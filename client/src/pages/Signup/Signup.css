@@ -12,6 +12,8 @@
   padding: 3rem 1rem;
   font-family: 'Source Serif 4', serif;
   color: white;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 #signup fieldset {
@@ -52,6 +54,13 @@
   background-color: var(--gold);
   color: white;
   margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--blue);
+    border: 2px solid var(--gold);
+  }
 }
 
 #signup p {

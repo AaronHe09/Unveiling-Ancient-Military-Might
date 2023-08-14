@@ -9,12 +9,8 @@
 }
 
 :root {
-  --blue: #7792a8;
-  --gold: #f5d17b;
-}
-
-body {
-  background-color: #fceee2;
+  --blue: #917b5c;
+  --gold: #625238;
 }
 
 ::-webkit-scrollbar {

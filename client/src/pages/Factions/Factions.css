@@ -25,7 +25,7 @@
 
 .fontawesome-icon-wrapper {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 0.5rem;
   padding: 0 1rem;
   cursor: pointer;

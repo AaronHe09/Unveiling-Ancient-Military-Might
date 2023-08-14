@@ -24,7 +24,10 @@ export default function NavBar() {
               <Link to="/factions">Factions</Link>
             </li>
             <li>
-              <Link to="/build-your-army">Build Your Army</Link>
+              <Link to="/build-your-army">Army</Link>
+            </li>
+            <li>
+              <Link to="battlefield">Battlefield</Link>
             </li>
           </ul>
         </nav>
