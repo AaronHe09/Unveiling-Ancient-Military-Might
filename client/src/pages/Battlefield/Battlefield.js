@@ -40,19 +40,19 @@ export default function Battlefield() {
     <main>
       <div id="battlefield-container">
         <div className="row">
-          <div className="column-half units row">
+          <div className="column-half units row inf">
             <Map array={infantry} />
           </div>
-          <div className="column-half units row">
+          <div className="column-half units row cav">
             <Map array={cavalry} />
           </div>
         </div>
         <div className="row">
-          <div className="column-full units row">
+          <div className="column-full units row mis">
             <Map array={missile} />
           </div>
         </div>
-        <div className="row">
+        <div className="column-full units row gen">
           <RenderGenerals factionGenerals={userGenerals} />
         </div>
       </div>

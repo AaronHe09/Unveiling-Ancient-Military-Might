@@ -11,15 +11,33 @@
 }
 
 #battlefield-container .units {
-  flex-wrap: wrap;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--gold);
-  margin: 1rem;
+  margin: 0.3rem;
+  padding: 0.3rem;
+  flex-wrap: wrap;
+}
+
+#battlefield-container .units.inf {
+  max-width: 620px;
+}
+
+#battlefield-container .units.cav {
+  max-width: 420px;
+}
+
+#battlefield-container .units.mis,
+#battlefield-container .units.gen {
+  max-width: 840px;
 }
 
 #battlefield-container .unit {
   max-width: 40px;
-  flex-basis: 33%;
+  flex-basis: calc(100% / 5);
+}
+
+#battlefield-container .cav .unit {
+  flex-basis: calc(100% / 4);
 }
 
 #battlefield-container .unit img {
@@ -27,5 +45,12 @@
 }
 
 #battlefield-container .general {
-  max-width: 100px;
+  max-width: 80px;
+  flex-basis: 33%;
+  margin: 0 0.5rem;
+  color: white;
+}
+
+#battlefield-container .general h3 {
+  font-size: 0.7rem;
 }
