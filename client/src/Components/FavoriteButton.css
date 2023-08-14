@@ -10,6 +10,12 @@
 
 #favorite-button-container svg {
   position: absolute;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: yellow;
+  }
 }
 
 #elite-soldiers-container #favorite-button-container {
