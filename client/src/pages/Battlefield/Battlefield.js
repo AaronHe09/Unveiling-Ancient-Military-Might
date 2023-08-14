@@ -62,9 +62,9 @@ export default function Battlefield() {
 
 function Map({ array }) {
   return array.map((unit) => {
-    const { imageUrl, unitName } = unit;
+    const { imageUrl, unitName, unitId, factionId } = unit;
     return (
-      <div className="unit">
+      <div className="unit" key={`${unitName}${unitId}${factionId}`}>
         <img src={imageUrl} alt={unitName} />
       </div>
     );

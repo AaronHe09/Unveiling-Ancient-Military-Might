@@ -13,10 +13,6 @@
   --gold: #f5d17b;
 }
 
-body {
-  background-color: #fceee2;
-}
-
 ::-webkit-scrollbar {
   width: 5px;
 }
