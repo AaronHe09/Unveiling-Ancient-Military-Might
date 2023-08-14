@@ -1,0 +1,9 @@
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+footer a {
+  color: black;
+  margin: 0.5rem 1rem;
+}

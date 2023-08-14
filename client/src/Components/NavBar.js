@@ -3,6 +3,7 @@ import './NavBar.css';
 import { Outlet, Link } from 'react-router-dom';
 import UserContext from './UserContext';
 import { useContext } from 'react';
+import Footer from './Footer';
 
 export default function NavBar() {
   const user = useContext(UserContext);
@@ -33,6 +34,7 @@ export default function NavBar() {
         </nav>
       </header>
       <Outlet />
+      <Footer />
     </>
   );
 }
