@@ -25,7 +25,7 @@ function Units({ currentKey, factionUnits }) {
   return (
     <>
       {currentArray.map((unit) => {
-        const { imageUrl, unitName, unitId, factionId } = unit;
+        const { imageUrl, unitName, unitId, factionId, armor, desc, weapon } = unit;
         return (
           <div
             className="unit-img-wrapper"
@@ -37,7 +37,16 @@ function Units({ currentKey, factionUnits }) {
               type="unit"
               factionId={factionId}
             />
+            {console.log(unit)}
             <img src={imageUrl} alt={unitName} />
+            <div className="hide">
+              <p>
+                <b>{unitName}</b> <br /> <br />
+                Weapon: {weapon} <br /> <br />
+                Armor: {armor} <br /> <br />
+                Description: {desc}
+              </p>
+            </div>
           </div>
         );
       })}
