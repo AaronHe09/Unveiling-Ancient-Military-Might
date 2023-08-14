@@ -1,5 +1,7 @@
 #login-container {
   padding: 1rem;
+  margin: 0 auto;
+  max-width: 800px;
 }
 
 #login {
