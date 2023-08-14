@@ -33,6 +33,11 @@ export default function Login({ setUserInfo }) {
     navigate('/login');
   }
 
+  function handleGuestLogin() {
+    setUsername('testuser3');
+    setPassword('1234');
+  }
+
   return (
     <main>
       {!user && (
@@ -46,6 +51,7 @@ export default function Login({ setUserInfo }) {
                   type="text"
                   placeholder="Username"
                   onChange={(e) => setUsername(e.target.value)}
+                  value={username}
                   required
                 />
               </div>
@@ -54,10 +60,14 @@ export default function Login({ setUserInfo }) {
                   type="text"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   required
                 />
               </div>
-              <button>Login</button>
+              <button type="submit">Login</button>
+              <button type="button" onClick={handleGuestLogin}>
+                Guest Login
+              </button>
               <p>
                 Don't have an account? <Link to="/signup">Sign Up</Link>
               </p>
