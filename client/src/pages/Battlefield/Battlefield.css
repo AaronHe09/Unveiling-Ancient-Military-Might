@@ -54,3 +54,21 @@
 #battlefield-container .general h3 {
   font-size: 0.7rem;
 }
+
+@media screen and (width >= 1025px) {
+  #battlefield-container .unit {
+    max-width: 50px;
+  }
+
+  #battlefield-container .units {
+    margin: 1rem;
+  }
+
+  #battlefield-container .general {
+    max-width: 100px;
+  }
+
+  #battlefield-container .general h3 {
+    font-size: 0.9rem;
+  }
+}
