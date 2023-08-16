@@ -4,8 +4,9 @@ import { readUserUnits, readUserGenerals } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
 import RenderUnits from '../../Components/RenderUnits';
 import UserContext from '../../Components/UserContext';
+import Spinner from '../../Components/Spinner';
 
-export default function BuildYourArmy() {
+export default function BuildYourArmy({ isLoading, setIsLoading }) {
   const [userUnits, setUserUnits] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
   const user = useContext(UserContext);
@@ -13,6 +14,7 @@ export default function BuildYourArmy() {
   useEffect(() => {
     async function fetchUserData() {
       try {
+        setIsLoading(true);
         const unitsData = await readUserUnits();
         const generalsData = await readUserGenerals();
         const groupBy = unitsData.reduce((obj, cur) => {
@@ -22,12 +24,17 @@ export default function BuildYourArmy() {
         }, {});
         setUserGenerals(generalsData);
         setUserUnits(groupBy);
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
     }
     if (user) fetchUserData();
-  }, [user]);
+  }, [user, setIsLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main>

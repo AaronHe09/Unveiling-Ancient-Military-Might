@@ -14,6 +14,7 @@ import Battlefield from './pages/Battlefield/Battlefield';
 
 function App() {
   const [userInfo, setUserInfo] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('token'));
@@ -33,11 +34,34 @@ function App() {
             path="/login"
             element={<Login setUserInfo={setUserInfomation} />}
           />
-          <Route path="/factions" element={<Factions />} />
-          <Route path="/factions/:factionId" element={<FactionPage />} />
-          <Route path="/build-your-army" element={<BuildYourArmy />} />
+          <Route
+            path="/factions"
+            element={
+              <Factions isLoading={isLoading} setIsLoading={setIsLoading} />
+            }
+          />
+          <Route
+            path="/factions/:factionId"
+            element={
+              <FactionPage isLoading={isLoading} setIsLoading={setIsLoading} />
+            }
+          />
+          <Route
+            path="/build-your-army"
+            element={
+              <BuildYourArmy
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
+          />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/battlefield" element={<Battlefield />} />
+          <Route
+            path="/battlefield"
+            element={
+              <Battlefield isLoading={isLoading} setIsLoading={setIsLoading} />
+            }
+          />
         </Route>
       </Routes>
     </UserContext.Provider>

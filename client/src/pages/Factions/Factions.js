@@ -3,15 +3,17 @@ import { readAllFactions } from '../../data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Spinner from '../../Components/Spinner';
 import './Factions.css';
 
-export default function Factions() {
+export default function Factions({ isLoading, setIsLoading }) {
   const [groupedFactions, setGroupedFactions] = useState(undefined);
   const [keys, setKeys] = useState([]);
 
   useEffect(() => {
     async function fetchAllFactions() {
       try {
+        setIsLoading(true);
         const data = await readAllFactions();
         const groupBy = data.reduce((obj, cur) => {
           obj[cur.factionGroup] = obj[cur.factionGroup] || [];
@@ -20,12 +22,17 @@ export default function Factions() {
         }, {});
         setGroupedFactions(groupBy);
         setKeys(Object.keys(groupBy));
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
     }
     fetchAllFactions();
-  }, []);
+  }, [setIsLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main id="factions-container">

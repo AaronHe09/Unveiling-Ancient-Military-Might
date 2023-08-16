@@ -3,8 +3,9 @@ import { useEffect, useState, useContext } from 'react';
 import { readUserGenerals, readUserUnits } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
 import UserContext from '../../Components/UserContext';
+import Spinner from '../../Components/Spinner';
 
-export default function Battlefield() {
+export default function Battlefield({ isLoading, setIsLoading }) {
   const [infantry, setInfantry] = useState([]);
   const [missile, setMissile] = useState([]);
   const [cavalry, setCavalry] = useState([]);
@@ -14,6 +15,7 @@ export default function Battlefield() {
   useEffect(() => {
     async function fetchUserData() {
       try {
+        setIsLoading(true);
         const unitsData = await readUserUnits();
         const generalsData = await readUserGenerals();
         const groupBy = unitsData.reduce((obj, cur) => {
@@ -31,12 +33,17 @@ export default function Battlefield() {
           ...groupBy['Missile Cavalry'],
         ]);
         setMissile([...groupBy['Missile Infantry']]);
+        setIsLoading(false);
       } catch (err) {
         console.error(err);
       }
     }
     if (user) fetchUserData();
-  }, [user]);
+  }, [user, setIsLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main>

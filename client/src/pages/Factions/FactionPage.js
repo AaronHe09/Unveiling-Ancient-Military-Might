@@ -4,8 +4,9 @@ import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
 import RenderUnits from '../../Components/RenderUnits';
 import RenderGenerals from '../../Components/RenderGenerals';
+import Spinner from '../../Components/Spinner';
 
-export default function FactionPage() {
+export default function FactionPage({ isLoading, setIsLoading }) {
   const { factionId } = useParams();
   const [factionDetail, setFactionDetail] = useState([]);
   const [factionUnits, setFactionUnits] = useState([]);
@@ -14,6 +15,7 @@ export default function FactionPage() {
   useEffect(() => {
     async function fetchFactionDetails() {
       try {
+        setIsLoading(true);
         const factionGeneralsData = await readGenerals(factionId);
         const factionData = await readFaction(factionId);
         const factionUnitsData = await readFactionUnits(factionId);
@@ -25,12 +27,17 @@ export default function FactionPage() {
         setFactionDetail(factionData[0]);
         setFactionUnits(groupBy);
         setFactionGenerals(factionGeneralsData);
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
     }
     fetchFactionDetails();
-  }, [factionId]);
+  }, [factionId, setIsLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main id="faction-page-container">
