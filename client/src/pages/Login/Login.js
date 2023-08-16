@@ -42,7 +42,7 @@ export default function Login({ setUserInfo }) {
     <main>
       {!user && (
         <div id="login-container">
-          <form id="login" onSubmit={(e) => handleLogin(e)}>
+          <form id="login" onSubmit={handleLogin}>
             <fieldset>
               <legend>Login</legend>
               <p className="login-error">{loginError}</p>
@@ -51,7 +51,7 @@ export default function Login({ setUserInfo }) {
                   type="text"
                   placeholder="Username"
                   onChange={(e) => setUsername(e.target.value)}
-                  value={username}
+                  defaultValue={username}
                   required
                 />
               </div>
@@ -60,7 +60,7 @@ export default function Login({ setUserInfo }) {
                   type="text"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                  value={password}
+                  defaultValue={password}
                   required
                 />
               </div>
@@ -78,7 +78,7 @@ export default function Login({ setUserInfo }) {
       {user && (
         <div id="logout">
           <p>Welcome, {user.username}</p>
-          <button type="button" onClick={() => handleLogout()}>
+          <button type="button" onClick={handleLogout}>
             Log Out
           </button>
         </div>
