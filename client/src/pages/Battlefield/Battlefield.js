@@ -24,15 +24,20 @@ export default function Battlefield({ isLoading, setIsLoading }) {
           return obj;
         }, {});
         setUserGenerals(generalsData);
-        setInfantry([
-          ...groupBy['Melee Infantry'],
-          ...groupBy['Spear Infantry'],
-        ]);
-        setCavalry([
-          ...groupBy['Melee Cavalry'],
-          ...groupBy['Missile Cavalry'],
-        ]);
-        setMissile([...groupBy['Missile Infantry']]);
+        const meleeInf = [
+          ...(groupBy['Melee Infantry'] ? groupBy['Melee Infantry'] : []),
+          ...(groupBy['Spear Infantry'] ? groupBy['Spear Infantry'] : []),
+        ];
+        const cavInf = [
+          ...(groupBy['Melee Cavalry'] ? groupBy['Melee Cavalry'] : []),
+          ...(groupBy['Missile Cavalry'] ? groupBy['Missile Cavalry'] : []),
+        ];
+        const missileInf = [
+          ...(groupBy['Missile Infantry'] ? groupBy['Missile Infantry'] : []),
+        ];
+        setInfantry(meleeInf);
+        setCavalry(cavInf);
+        setMissile(missileInf);
         setIsLoading(false);
       } catch (err) {
         console.error(err);
@@ -49,9 +54,11 @@ export default function Battlefield({ isLoading, setIsLoading }) {
     <main>
       <div id="battlefield-container">
         <div className="row">
-          <div className="column-half units row inf">
-            <Map array={infantry} />
-          </div>
+          {infantry.length !== 0 && (
+            <div className="column-half units row inf">
+              <Map array={infantry} />
+            </div>
+          )}
           <div className="column-half units row cav">
             <Map array={cavalry} />
           </div>
