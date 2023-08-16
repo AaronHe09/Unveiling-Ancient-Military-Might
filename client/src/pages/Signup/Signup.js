@@ -22,7 +22,7 @@ export default function SignUp() {
   return (
     <main>
       <div id="signup-container">
-        <form id="signup" onSubmit={(e) => handleSignup(e)}>
+        <form id="signup" onSubmit={handleSignup}>
           <fieldset>
             <legend>Sign up</legend>
             <div>
