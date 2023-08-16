@@ -34,7 +34,7 @@ export default function Factions() {
         {keys.map((key) => {
           return (
             <section key={key} className="faction-group">
-              <h1>{key}</h1>
+              <h2>{key}</h2>
               <RenderFactions
                 currentKey={key}
                 groupedFactions={groupedFactions}

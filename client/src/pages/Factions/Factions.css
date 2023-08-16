@@ -16,7 +16,8 @@
   color: white;
 }
 
-.faction-group h1 {
+.faction-group h1,
+.faction-group h2 {
   margin-bottom: 0.5rem;
   padding: 0.7rem;
   background-color: var(--gold);
