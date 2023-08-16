@@ -59,14 +59,18 @@ export default function Battlefield({ isLoading, setIsLoading }) {
               <Map array={infantry} />
             </div>
           )}
-          <div className="column-half units row cav">
-            <Map array={cavalry} />
-          </div>
+          {cavalry.length !== 0 && (
+            <div className="column-half units row cav">
+              <Map array={cavalry} />
+            </div>
+          )}
         </div>
         <div className="row">
-          <div className="column-full units row mis">
-            <Map array={missile} />
-          </div>
+          {missile.length !== 0 && (
+            <div className="column-full units row mis">
+              <Map array={missile} />
+            </div>
+          )}
         </div>
         <div className="column-full units row gen">
           <RenderGenerals factionGenerals={userGenerals} />
