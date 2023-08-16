@@ -1,5 +1,7 @@
 import './RenderUnits.css';
 import FavoriteButton from './FavoriteButton';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function RenderUnits({ factionUnits }) {
   const keys = Object.keys(factionUnits);
@@ -38,6 +40,7 @@ function Units({ currentKey, factionUnits }) {
               type="unit"
               factionId={factionId}
             />
+            <FontAwesomeIcon icon={faInfo} color='black' className='info-icon'/>
             <img src={imageUrl} alt={unitName} />
             <div className="hide">
               <p>
