@@ -1,8 +1,8 @@
 import './AncientEmpires.css';
-import eygpt from '../../images/egypt.png';
-import rome from '../../images/rome.png';
-import macedonia from '../../images/macedonia.png';
-import seleucid from '../../images/seleucid.png';
+import eygpt from '../../images/egypt.webp';
+import rome from '../../images/rome.webp';
+import macedonia from '../../images/macedonia.webp';
+import seleucid from '../../images/seleucid.webp';
 import { Link } from 'react-router-dom';
 
 export default function AncientEmpires() {

@@ -4,10 +4,15 @@ import { readUserUnits, readUserGenerals } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
 import RenderUnits from '../../Components/RenderUnits';
 import UserContext from '../../Components/UserContext';
+import Spinner from '../../Components/Spinner';
+import Error from '../../Components/Error';
+import PromptLogin from '../../Components/PromptLogin';
 
 export default function BuildYourArmy() {
   const [userUnits, setUserUnits] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
   const user = useContext(UserContext);
 
   useEffect(() => {
@@ -22,12 +27,27 @@ export default function BuildYourArmy() {
         }, {});
         setUserGenerals(generalsData);
         setUserUnits(groupBy);
+        setIsLoading(false);
       } catch (err) {
-        console.error(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     if (user) fetchUserData();
-  }, [user]);
+  }, [user, isLoading]);
+
+  if (!user) {
+    return <PromptLogin />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <main>

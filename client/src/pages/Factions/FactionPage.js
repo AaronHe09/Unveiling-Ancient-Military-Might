@@ -4,12 +4,16 @@ import { readFaction, readFactionUnits, readGenerals } from '../../data';
 import './FactionPage.css';
 import RenderUnits from '../../Components/RenderUnits';
 import RenderGenerals from '../../Components/RenderGenerals';
+import Spinner from '../../Components/Spinner';
+import Error from '../../Components/Error';
 
 export default function FactionPage() {
   const { factionId } = useParams();
   const [factionDetail, setFactionDetail] = useState([]);
   const [factionUnits, setFactionUnits] = useState([]);
   const [factionGenerals, setFactionGenerals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchFactionDetails() {
@@ -25,12 +29,23 @@ export default function FactionPage() {
         setFactionDetail(factionData[0]);
         setFactionUnits(groupBy);
         setFactionGenerals(factionGeneralsData);
+        setIsLoading(false);
       } catch (err) {
-        console.log(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchFactionDetails();
-  }, [factionId]);
+  }, [factionId, isLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <main id="faction-page-container">

@@ -37,6 +37,12 @@ nav a {
   }
 }
 
+@media screen and (width >=768px) {
+  nav a {
+    font-size: 1rem;
+  }
+}
+
 @media screen and (width >= 1025px) {
   header {
     padding: 3rem 4rem;
@@ -47,8 +53,6 @@ nav a {
   }
 
   nav a {
-    text-decoration: none;
-    color: white;
     font-size: 1.1rem;
   }
 

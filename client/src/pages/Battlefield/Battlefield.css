@@ -32,12 +32,7 @@
 }
 
 #battlefield-container .unit {
-  max-width: 40px;
-  flex-basis: calc(100% / 5);
-}
-
-#battlefield-container .cav .unit {
-  flex-basis: calc(100% / 4);
+  max-width: 30px;
 }
 
 #battlefield-container .unit img {
@@ -59,9 +54,23 @@
   font-size: 0.7rem;
 }
 
+@media screen and (width >=768px) {
+  #battlefield-container .unit {
+    max-width: 40px;
+  }
+
+  #battlefield-container .general {
+    max-width: 100px;
+  }
+
+  #battlefield-container .general h3 {
+    font-size: 0.8rem;
+  }
+}
+
 @media screen and (width >= 1025px) {
   #battlefield-container .unit {
-    max-width: 50px;
+    max-width: 45px;
   }
 
   #battlefield-container .units {
@@ -73,6 +82,6 @@
   }
 
   #battlefield-container .general h3 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }

@@ -3,12 +3,17 @@ import { useEffect, useState, useContext } from 'react';
 import { readUserGenerals, readUserUnits } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
 import UserContext from '../../Components/UserContext';
+import Spinner from '../../Components/Spinner';
+import Error from '../../Components/Error';
+import PromptLogin from '../../Components/PromptLogin';
 
 export default function Battlefield() {
   const [infantry, setInfantry] = useState([]);
   const [missile, setMissile] = useState([]);
   const [cavalry, setCavalry] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
   const user = useContext(UserContext);
 
   useEffect(() => {
@@ -22,37 +27,63 @@ export default function Battlefield() {
           return obj;
         }, {});
         setUserGenerals(generalsData);
-        setInfantry([
-          ...groupBy['Melee Infantry'],
-          ...groupBy['Spear Infantry'],
-        ]);
-        setCavalry([
-          ...groupBy['Melee Cavalry'],
-          ...groupBy['Missile Cavalry'],
-        ]);
-        setMissile([...groupBy['Missile Infantry']]);
+        const meleeInf = [
+          ...(groupBy['Melee Infantry'] ? groupBy['Melee Infantry'] : []),
+          ...(groupBy['Spear Infantry'] ? groupBy['Spear Infantry'] : []),
+        ];
+        const cavInf = [
+          ...(groupBy['Melee Cavalry'] ? groupBy['Melee Cavalry'] : []),
+          ...(groupBy['Missile Cavalry'] ? groupBy['Missile Cavalry'] : []),
+        ];
+        const missileInf = [
+          ...(groupBy['Missile Infantry'] ? groupBy['Missile Infantry'] : []),
+        ];
+        setInfantry(meleeInf);
+        setCavalry(cavInf);
+        setMissile(missileInf);
+        setIsLoading(false);
       } catch (err) {
-        console.error(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     if (user) fetchUserData();
-  }, [user]);
+  }, [user, isLoading]);
+
+  if (!user) {
+    return <PromptLogin />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <main>
       <div id="battlefield-container">
         <div className="row">
-          <div className="column-half units row inf">
-            <Map array={infantry} />
-          </div>
-          <div className="column-half units row cav">
-            <Map array={cavalry} />
-          </div>
+          {infantry.length !== 0 && (
+            <div className="column-half units row inf">
+              <Map array={infantry} />
+            </div>
+          )}
+          {cavalry.length !== 0 && (
+            <div className="column-half units row cav">
+              <Map array={cavalry} />
+            </div>
+          )}
         </div>
         <div className="row">
-          <div className="column-full units row mis">
-            <Map array={missile} />
-          </div>
+          {missile.length !== 0 && (
+            <div className="column-full units row mis">
+              <Map array={missile} />
+            </div>
+          )}
         </div>
         <div className="column-full units row gen">
           <RenderGenerals factionGenerals={userGenerals} />

@@ -33,6 +33,19 @@
   max-width: 600px;
 }
 
+.info-icon{
+  position: absolute;
+  top: 0;
+  left: 4px;
+  pointer-events: none;
+}
+
+@media screen and (width >=768px) {
+  .faction-units .unit-img-wrapper {
+    width: 50px;
+  }
+}
+
 @media screen and (width >=1025px) {
   .faction-units .unit-img-wrapper {
     width: 60px;

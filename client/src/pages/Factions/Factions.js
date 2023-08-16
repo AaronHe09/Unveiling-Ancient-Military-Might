@@ -3,11 +3,15 @@ import { readAllFactions } from '../../data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Spinner from '../../Components/Spinner';
+import Error from '../../Components/Error';
 import './Factions.css';
 
 export default function Factions() {
   const [groupedFactions, setGroupedFactions] = useState(undefined);
   const [keys, setKeys] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchAllFactions() {
@@ -20,12 +24,23 @@ export default function Factions() {
         }, {});
         setGroupedFactions(groupBy);
         setKeys(Object.keys(groupBy));
+        setIsLoading(false);
       } catch (err) {
-        console.error(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchAllFactions();
-  }, []);
+  }, [isLoading]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <main id="factions-container">
@@ -34,7 +49,7 @@ export default function Factions() {
         {keys.map((key) => {
           return (
             <section key={key} className="faction-group">
-              <h1>{key}</h1>
+              <h2>{key}</h2>
               <RenderFactions
                 currentKey={key}
                 groupedFactions={groupedFactions}
