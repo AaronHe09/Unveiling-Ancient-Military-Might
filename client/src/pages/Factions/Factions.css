@@ -16,7 +16,6 @@
   color: white;
 }
 
-.faction-group h1,
 .faction-group h2 {
   margin-bottom: 0.5rem;
   padding: 0.7rem;
@@ -51,8 +50,18 @@
   padding: 0.7rem;
 }
 
+@media screen and (width >=768px) {
+  .faction-group h2 {
+    font-size: 1.6rem;
+  }
+
+  .faction-card h3 {
+    font-size: 1.2rem;
+  }
+}
+
 @media screen and (width >= 1025px) {
-  .faction-group h1 {
+  .faction-group h2 {
     font-size: 1.7rem;
   }
 
