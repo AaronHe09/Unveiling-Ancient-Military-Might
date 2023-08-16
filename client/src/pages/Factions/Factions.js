@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Spinner from '../../Components/Spinner';
+import Error from '../../Components/Error';
 import './Factions.css';
 
 export default function Factions() {
   const [groupedFactions, setGroupedFactions] = useState(undefined);
   const [keys, setKeys] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchAllFactions() {
@@ -24,14 +26,20 @@ export default function Factions() {
         setKeys(Object.keys(groupBy));
         setIsLoading(false);
       } catch (err) {
-        console.error(err);
+        setError(err.message);
+      } finally {
+        isLoading(false);
       }
     }
     fetchAllFactions();
-  }, [setIsLoading]);
+  }, [isLoading]);
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
   }
 
   return (

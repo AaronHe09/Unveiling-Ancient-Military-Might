@@ -4,6 +4,7 @@ import { readUserGenerals, readUserUnits } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
 import UserContext from '../../Components/UserContext';
 import Spinner from '../../Components/Spinner';
+import Error from '../../Components/Error';
 
 export default function Battlefield() {
   const [infantry, setInfantry] = useState([]);
@@ -11,6 +12,7 @@ export default function Battlefield() {
   const [cavalry, setCavalry] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
   const user = useContext(UserContext);
 
   useEffect(() => {
@@ -40,14 +42,20 @@ export default function Battlefield() {
         setMissile(missileInf);
         setIsLoading(false);
       } catch (err) {
-        console.error(err);
+        setError(err.message);
+      } finally {
+        isLoading(false);
       }
     }
     if (user) fetchUserData();
-  }, [user]);
+  }, [user, isLoading]);
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return <Error error={error} />;
   }
 
   return (
