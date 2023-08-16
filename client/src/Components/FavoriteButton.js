@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regular } from '@fortawesome/free-regular-svg-icons';
 import { faStar as solid } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import UserContext from './UserContext';
 import './FavoriteButton.css';
 import {
@@ -16,6 +17,7 @@ import {
 export default function FavoriteButton({ size, color, id, type, factionId }) {
   const [favorited, setFavorited] = useState(regular);
   const user = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchUserArmy() {
@@ -40,6 +42,9 @@ export default function FavoriteButton({ size, color, id, type, factionId }) {
 
   async function handleFavorited() {
     try {
+      if (!user) {
+        navigate('/login');
+      }
       if (favorited === regular) {
         setFavorited(solid);
         if (type === 'general') {
@@ -56,7 +61,7 @@ export default function FavoriteButton({ size, color, id, type, factionId }) {
         }
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   }
 
