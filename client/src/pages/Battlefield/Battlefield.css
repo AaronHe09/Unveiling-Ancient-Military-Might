@@ -44,6 +44,10 @@
   width: 100%;
 }
 
+#battlefield-container .units.gen {
+  justify-content: center;
+}
+
 #battlefield-container .general {
   max-width: 80px;
   flex-basis: 33%;
