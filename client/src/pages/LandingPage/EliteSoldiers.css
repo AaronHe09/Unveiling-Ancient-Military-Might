@@ -84,6 +84,16 @@
   font-size: 0.6rem;
 }
 
+@media screen and (width >=768px) {
+  #elite-soldiers-container .unit-card {
+    flex-basis: 20%;
+  }
+
+  #elite-soldiers-container .desc-card {
+    flex-basis: 80%;
+  }
+}
+
 @media screen and (width >=1025px) {
   #elite-soldiers-container h1 {
     font-size: 2rem;
