@@ -1,12 +1,14 @@
 import './BuildYourArmy.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { readUserUnits, readUserGenerals } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
 import RenderUnits from '../../Components/RenderUnits';
+import UserContext from '../../Components/UserContext';
 
 export default function BuildYourArmy() {
   const [userUnits, setUserUnits] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -24,8 +26,8 @@ export default function BuildYourArmy() {
         console.error(err);
       }
     }
-    fetchUserData();
-  }, []);
+    if (user) fetchUserData();
+  }, [user]);
 
   return (
     <main>

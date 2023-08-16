@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regular } from '@fortawesome/free-regular-svg-icons';
 import { faStar as solid } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import UserContext from './UserContext';
 import './FavoriteButton.css';
 import {
   postGeneral,
@@ -14,6 +15,7 @@ import {
 
 export default function FavoriteButton({ size, color, id, type, factionId }) {
   const [favorited, setFavorited] = useState(regular);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     async function fetchUserArmy() {
@@ -33,8 +35,8 @@ export default function FavoriteButton({ size, color, id, type, factionId }) {
         console.error(err);
       }
     }
-    fetchUserArmy();
-  }, [factionId, id, type]);
+    if (user) fetchUserArmy();
+  }, [factionId, id, type, user]);
 
   async function handleFavorited() {
     try {

@@ -1,13 +1,15 @@
 import './Battlefield.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { readUserGenerals, readUserUnits } from '../../data';
 import RenderGenerals from '../../Components/RenderGenerals';
+import UserContext from '../../Components/UserContext';
 
 export default function Battlefield() {
   const [infantry, setInfantry] = useState([]);
   const [missile, setMissile] = useState([]);
   const [cavalry, setCavalry] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -33,8 +35,8 @@ export default function Battlefield() {
         console.error(err);
       }
     }
-    fetchUserData();
-  }, []);
+    if (user) fetchUserData();
+  }, [user]);
 
   return (
     <main>
