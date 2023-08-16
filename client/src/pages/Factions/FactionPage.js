@@ -6,16 +6,16 @@ import RenderUnits from '../../Components/RenderUnits';
 import RenderGenerals from '../../Components/RenderGenerals';
 import Spinner from '../../Components/Spinner';
 
-export default function FactionPage({ isLoading, setIsLoading }) {
+export default function FactionPage() {
   const { factionId } = useParams();
   const [factionDetail, setFactionDetail] = useState([]);
   const [factionUnits, setFactionUnits] = useState([]);
   const [factionGenerals, setFactionGenerals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchFactionDetails() {
       try {
-        setIsLoading(true);
         const factionGeneralsData = await readGenerals(factionId);
         const factionData = await readFaction(factionId);
         const factionUnitsData = await readFactionUnits(factionId);

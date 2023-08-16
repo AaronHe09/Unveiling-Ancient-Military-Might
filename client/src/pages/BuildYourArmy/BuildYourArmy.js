@@ -6,15 +6,15 @@ import RenderUnits from '../../Components/RenderUnits';
 import UserContext from '../../Components/UserContext';
 import Spinner from '../../Components/Spinner';
 
-export default function BuildYourArmy({ isLoading, setIsLoading }) {
+export default function BuildYourArmy() {
   const [userUnits, setUserUnits] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
   const user = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUserData() {
       try {
-        setIsLoading(true);
         const unitsData = await readUserUnits();
         const generalsData = await readUserGenerals();
         const groupBy = unitsData.reduce((obj, cur) => {

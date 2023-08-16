@@ -5,17 +5,17 @@ import RenderGenerals from '../../Components/RenderGenerals';
 import UserContext from '../../Components/UserContext';
 import Spinner from '../../Components/Spinner';
 
-export default function Battlefield({ isLoading, setIsLoading }) {
+export default function Battlefield() {
   const [infantry, setInfantry] = useState([]);
   const [missile, setMissile] = useState([]);
   const [cavalry, setCavalry] = useState([]);
   const [userGenerals, setUserGenerals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const user = useContext(UserContext);
 
   useEffect(() => {
     async function fetchUserData() {
       try {
-        setIsLoading(true);
         const unitsData = await readUserUnits();
         const generalsData = await readUserGenerals();
         const groupBy = unitsData.reduce((obj, cur) => {
@@ -44,7 +44,7 @@ export default function Battlefield({ isLoading, setIsLoading }) {
       }
     }
     if (user) fetchUserData();
-  }, [user, setIsLoading]);
+  }, [user]);
 
   if (isLoading) {
     return <Spinner />;

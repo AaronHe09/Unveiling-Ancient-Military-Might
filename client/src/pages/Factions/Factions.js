@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 import Spinner from '../../Components/Spinner';
 import './Factions.css';
 
-export default function Factions({ isLoading, setIsLoading }) {
+export default function Factions() {
   const [groupedFactions, setGroupedFactions] = useState(undefined);
   const [keys, setKeys] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAllFactions() {
       try {
-        setIsLoading(true);
         const data = await readAllFactions();
         const groupBy = data.reduce((obj, cur) => {
           obj[cur.factionGroup] = obj[cur.factionGroup] || [];
