@@ -33,7 +33,7 @@ export default function FactionPage() {
       } catch (err) {
         setError(err.message);
       } finally {
-        isLoading(false);
+        setIsLoading(false);
       }
     }
     fetchFactionDetails();

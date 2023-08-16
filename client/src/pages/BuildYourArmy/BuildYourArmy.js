@@ -6,6 +6,7 @@ import RenderUnits from '../../Components/RenderUnits';
 import UserContext from '../../Components/UserContext';
 import Spinner from '../../Components/Spinner';
 import Error from '../../Components/Error';
+import PromptLogin from '../../Components/PromptLogin';
 
 export default function BuildYourArmy() {
   const [userUnits, setUserUnits] = useState([]);
@@ -30,11 +31,15 @@ export default function BuildYourArmy() {
       } catch (err) {
         setError(err.message);
       } finally {
-        isLoading(false);
+        setIsLoading(false);
       }
     }
     if (user) fetchUserData();
   }, [user, isLoading]);
+
+  if (!user) {
+    return <PromptLogin />;
+  }
 
   if (isLoading) {
     return <Spinner />;

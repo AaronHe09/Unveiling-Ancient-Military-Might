@@ -28,7 +28,7 @@ export default function Factions() {
       } catch (err) {
         setError(err.message);
       } finally {
-        isLoading(false);
+        setIsLoading(false);
       }
     }
     fetchAllFactions();
