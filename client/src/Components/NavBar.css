@@ -8,7 +8,6 @@ header {
   align-items: center;
 }
 
-/* first column */
 header .img-wrapper {
   width: 35px;
 }
@@ -17,7 +16,6 @@ header .img-wrapper img {
   width: 100%;
 }
 
-/* second column */
 nav ul {
   display: flex;
   align-items: center;
@@ -27,8 +25,6 @@ nav ul {
 nav li {
   list-style-type: none;
 }
-
-/* Links */
 
 nav a {
   text-decoration: none;
