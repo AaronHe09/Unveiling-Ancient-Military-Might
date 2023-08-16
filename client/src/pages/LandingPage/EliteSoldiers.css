@@ -94,6 +94,17 @@
   }
 }
 
+@media screen and (width >=768px) {
+  #elite-soldiers-container .unit-desc {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+  }
+
+  #elite-soldiers-container .unit-name {
+    font-size: 0.8rem;
+  }
+}
+
 @media screen and (width >=1025px) {
   #elite-soldiers-container h1 {
     font-size: 2rem;
