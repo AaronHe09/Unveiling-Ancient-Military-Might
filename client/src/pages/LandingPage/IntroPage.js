@@ -1,4 +1,4 @@
-import crossSword from '../../images/crossSword.gif';
+import crossSword from '../../images/cross-sword.gif';
 import './IntroPage.css';
 
 export default function IntroPage() {
